@@ -10,20 +10,29 @@ body.innerHTML = `
 `;
 
 const latitudeElement = document.getElementById('latitude');
+
 const longitudeElement = document.getElementById('longitude');
+
 const distanceElement = document.getElementById('distance');
+
 const movedElement = document.getElementById('moved');
+
 const vibrateTestButton = document.getElementById('vibrate-test');
 
 vibrateTestButton.addEventListener('click', () => 
 {
+
   if ("vibrate" in navigator) 
   {
+
     navigator.vibrate(500);
     movedElement.textContent = "Vibration test initiated.";
+
   } else {
+
     movedElement.textContent = "Vibration API is not supported on this device.";
   }
+
 });
 
 let counter = 0, prevPos = null, totalDis = 0;
@@ -38,9 +47,11 @@ let lasttime = 0;
 
 const calculateDistance = (lat1, lon1, lat2, lon2) => 
 {
+
   const R = 6371000;
   
   const dLat = (lat2 - lat1) * (Math.PI / 180);
+
   const dLon = (lon2 - lon1) * (Math.PI / 180);
   
   const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
@@ -50,28 +61,36 @@ const calculateDistance = (lat1, lon1, lat2, lon2) =>
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
   
   return R * c;
+
 };
 
 const getAveragePosition = () => 
 {
+
   if (positionQueue.length === 0) return null;
   
   const sum = positionQueue.reduce((acc, pos) => 
   ({
+
     latitude: acc.latitude + pos.latitude,
     longitude: acc.longitude + pos.longitude
+
   }), 
   { latitude: 0, longitude: 0 });
   
   return {
+
     latitude: sum.latitude / positionQueue.length,
     longitude: sum.longitude / positionQueue.length
+
   };
+
 };
 
 navigator.geolocation.watchPosition(
   (position) => 
   {
+
     const currTime = Date.now();
 
     const { latitude, longitude } = position.coords;
@@ -80,7 +99,9 @@ navigator.geolocation.watchPosition(
 
     if (positionQueue.length > QUEUE_SIZE) 
     {
+
       positionQueue.shift();
+
     }
 
     const avgPosition = getAveragePosition();
@@ -92,17 +113,22 @@ navigator.geolocation.watchPosition(
 
     if (prevPos && (currTime - lasttime) > 1000) 
     {
+
       const distance = calculateDistance(
+
         prevPos.latitude,
         prevPos.longitude,
         avgPosition.latitude,
         avgPosition.longitude
+
       );
 
       if (distance >= MOVEMENT_THRESHOLD) 
       {
+
         totalDis += distance;
         distanceElement.textContent = totalDis.toFixed(2);
+
         console.log(`Distance covered: ${distance.toFixed(2)} meters`);
 
         if (totalDis >= counter) 
@@ -111,6 +137,7 @@ navigator.geolocation.watchPosition(
 
           if ("vibrate" in navigator) 
           {
+
             navigator.vibrate(1000);
           }
           counter += 50;
@@ -122,21 +149,30 @@ navigator.geolocation.watchPosition(
     } 
     else if (!prevPos)
     {
+
       prevPos = avgPosition;
       lasttime = currTime;
+
     }    
     else 
     {
+
       prevPos = avgPosition;
+
     }
+
   },
   (error) => 
   {
+
     console.error(error);
+
   },
   {
+
     enableHighAccuracy: true,
     maximumAge: 0,
     timeout: 1000
+
   }
 );
