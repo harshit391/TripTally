@@ -20,7 +20,7 @@ else
   movedElement.textContent = "Vibration API is not supported on this device.";
 }
 
-let counter = 50.00, idx = 1, prevPos = null, totalDis = 0; 
+let counter = 25.00, idx = 1, prevPos = null, totalDis = 0; 
 
 
 const calculateDistance = (lat1, lon1, lat2, lon2) => 
@@ -64,8 +64,9 @@ navigator.geolocation.watchPosition(
 
       if (totalDis.toFixed(2) >= counter) 
       {
+        movedElement.textContent = counter;
         navigator.vibrate(1000);
-        counter += 50.00;
+        counter += 25.00;
       }
     }
 
