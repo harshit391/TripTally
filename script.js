@@ -13,6 +13,7 @@ const movedElement = document.getElementById('moved');
 
 if ("vibrate" in navigator) 
 {
+  navigator.vibrate(500);
   movedElement.textContent = "Vibration API is supported.";
 } 
 else 
@@ -20,7 +21,7 @@ else
   movedElement.textContent = "Vibration API is not supported on this device.";
 }
 
-let counter = 25.00, idx = 1, prevPos = null, totalDis = 0; 
+let counter = 10, idx = 1, prevPos = null, totalDis = 0; 
 
 
 const calculateDistance = (lat1, lon1, lat2, lon2) => 
@@ -62,11 +63,11 @@ navigator.geolocation.watchPosition(
 
       console.log(`Distance covered: ${distance.toFixed(2)} meters`);
 
-      if (totalDis.toFixed(2) >= counter) 
+      if (totalDis.toFixed(0) > 10) 
       {
         movedElement.textContent = counter;
         navigator.vibrate(1000);
-        counter += 25.00;
+        counter += 10;
       }
     }
 
