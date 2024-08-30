@@ -34,6 +34,8 @@ const QUEUE_SIZE = 5;
 
 const MOVEMENT_THRESHOLD = 5; // A Threshold unless It updates the position even if you are not moving
 
+let lasttime = 0;
+
 const calculateDistance = (lat1, lon1, lat2, lon2) => 
 {
   const R = 6371000;
@@ -70,6 +72,8 @@ const getAveragePosition = () =>
 navigator.geolocation.watchPosition(
   (position) => 
   {
+    const currTime = Date.now();
+
     const { latitude, longitude } = position.coords;
 
     positionQueue.push({ latitude, longitude });
@@ -86,7 +90,7 @@ navigator.geolocation.watchPosition(
     latitudeElement.textContent = avgPosition.latitude.toFixed(6);
     longitudeElement.textContent = avgPosition.longitude.toFixed(6);
 
-    if (prevPos) 
+    if (prevPos && (currTime - lasttime) > 1000) 
     {
       const distance = calculateDistance(
         prevPos.latitude,
@@ -113,8 +117,15 @@ navigator.geolocation.watchPosition(
         }
 
         prevPos = avgPosition;
+        lasttime = currTime;
       }
-    } else 
+    } 
+    else if (!prevPos)
+    {
+      prevPos = avgPosition;
+      lasttime = currTime;
+    }    
+    else 
     {
       prevPos = avgPosition;
     }
