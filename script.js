@@ -10,8 +10,9 @@ const latitudeElement = document.getElementById('latitude');
 const longitudeElement = document.getElementById('longitude');
 const distanceElement = document.getElementById('distance');
 const movedElement = document.getElementById('moved');
-let counter = 1;
 
+let counter = 100.00;
+let idx = 0;
 let previousPosition = null; // To store the last known position
 let totalDistance = 0; // To store the total distance covered
 
@@ -51,9 +52,10 @@ navigator.geolocation.watchPosition(
 
       console.log(`Distance covered: ${distance.toFixed(2)} meters`);
 
-      if (distance.toFixed(2) >= 100.00) {
-        movedElement.textContent = counter;
-        counter++;
+      if (distance.toFixed(2) >= counter) {
+        movedElement.textContent = idx;
+        counter += 100.00;
+        idx++;
       }
     }
 
