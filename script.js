@@ -1,11 +1,6 @@
 const body = document.querySelector('.mybody');
 
-if ("vibrate" in navigator) {
-    console.log("Vibration API is supported.");
-    navigator.vibrate(500); // Example vibration
-} else {
-    console.log("Vibration API is not supported on this device.");
-}
+
 
 body.innerHTML = `<h1>Location Coordinates and Distance Covered</h1>
 <p>Latitude: <span id="latitude"></span></p>
@@ -17,6 +12,15 @@ const latitudeElement = document.getElementById('latitude');
 const longitudeElement = document.getElementById('longitude');
 const distanceElement = document.getElementById('distance');
 const movedElement = document.getElementById('moved');
+
+if ("vibrate" in navigator) {
+    console.log("Vibration API is supported.");
+    movedElement.textContent = "Vibration API is supported.";
+    navigator.vibrate(500); // Example vibration
+} else {
+    movedElement.textContent = "Vibration API is not supported on this device.";
+    console.log("Vibration API is not supported on this device.");
+}
 
 let counter = 100.00;
 let idx = 1;
