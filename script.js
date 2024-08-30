@@ -12,7 +12,7 @@ const distanceElement = document.getElementById('distance');
 const movedElement = document.getElementById('moved');
 
 let counter = 100.00;
-let idx = 0;
+let idx = 1;
 let previousPosition = null; // To store the last known position
 let totalDistance = 0; // To store the total distance covered
 
