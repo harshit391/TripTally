@@ -16,7 +16,6 @@ const movedElement = document.getElementById('moved');
 if ("vibrate" in navigator) {
     console.log("Vibration API is supported.");
     movedElement.textContent = "Vibration API is supported.";
-    navigator.vibrate(500); // Example vibration
 } else {
     movedElement.textContent = "Vibration API is not supported on this device.";
     console.log("Vibration API is not supported on this device.");
@@ -64,8 +63,7 @@ navigator.geolocation.watchPosition(
       console.log(`Distance covered: ${distance.toFixed(2)} meters`);
 
       if (totalDistance.toFixed(2) >= 500.00) {
-        navigator.vibrate(1000);
-        navigator.vibrate(0);
+        navigator.vibrate(500);
       }
     }
 
