@@ -64,10 +64,7 @@ navigator.geolocation.watchPosition(
 
       if (totalDis.toFixed(2) >= counter) 
       {
-        setTimeout(() => {
-          navigator.vibrate(1000);
-        }, 1000);
-        navigator.vibrate(0);
+        navigator.vibrate(1000);
         counter += 50.00;
       }
     }
