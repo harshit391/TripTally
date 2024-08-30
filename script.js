@@ -65,6 +65,7 @@ navigator.geolocation.watchPosition(
 
       if (totalDistance.toFixed(2) >= 500.00) {
         navigator.vibrate(1000);
+        navigator.vibrate(0);
       }
     }
 
