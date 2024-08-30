@@ -48,27 +48,27 @@ navigator.geolocation.watchPosition(
     latitudeElement.textContent = latitude.toFixed(6);
     longitudeElement.textContent = longitude.toFixed(6);
 
-    if (previousPosition) 
+    if (prevPos) 
     {
       const distance = calculateDistance(
-        previousPosition.latitude,
-        previousPosition.longitude,
+        prevPos.latitude,
+        prevPos.longitude,
         latitude,
         longitude
       );
 
-      totalDistance += distance;
-      distanceElement.textContent = totalDistance.toFixed(2); 
+      totalDis += distance;
+      distanceElement.textContent = totalDis.toFixed(2); 
 
       console.log(`Distance covered: ${distance.toFixed(2)} meters`);
 
-      if (totalDistance.toFixed(2) >= 50.00) 
+      if (totalDis.toFixed(2) >= 50.00) 
       {
         navigator.vibrate(1000);
       }
     }
 
-    previousPosition = { latitude, longitude };
+    prevPos = { latitude, longitude };
 
   },
   (error) => 
