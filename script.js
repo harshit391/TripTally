@@ -63,8 +63,9 @@ navigator.geolocation.watchPosition(
 
       console.log(`Distance covered: ${distance.toFixed(2)} meters`);
 
-      if (totalDis.toFixed(0) > counter) 
+      if (totalDis.toFixed(0) >= counter) 
       {
+        console.log(totalDis >= counter);
         movedElement.textContent = counter;
         navigator.vibrate(1000);
         counter += 50;
