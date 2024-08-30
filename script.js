@@ -1,7 +1,5 @@
 const body = document.querySelector('.mybody');
 
-
-
 body.innerHTML = `<h1>Location Coordinates and Distance Covered</h1>
 <p>Latitude: <span id="latitude"></span></p>
 <p>Longitude: <span id="longitude"></span></p>
@@ -62,8 +60,8 @@ navigator.geolocation.watchPosition(
 
       console.log(`Distance covered: ${distance.toFixed(2)} meters`);
 
-      if (totalDistance.toFixed(2) >= 500.00) {
-        navigator.vibrate(500);
+      if (totalDistance.toFixed(2) >= 50.00) {
+        navigator.vibrate(1000);
       }
     }
 
