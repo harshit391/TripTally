@@ -3,11 +3,14 @@ const body = document.querySelector('.mybody');
 body.innerHTML = `<h1>Location Coordinates and Distance Covered</h1>
 <p>Latitude: <span id="latitude"></span></p>
 <p>Longitude: <span id="longitude"></span></p>
-<p>Distance Covered (m): <span id="distance"></span></p>`;
+<p>Distance Covered (m): <span id="distance"></span></p>
+<p>You Moved :- <span id="moved"></span></p>`;
 
 const latitudeElement = document.getElementById('latitude');
 const longitudeElement = document.getElementById('longitude');
 const distanceElement = document.getElementById('distance');
+const movedElement = document.getElementById('moved');
+let counter = 1;
 
 let previousPosition = null; // To store the last known position
 let totalDistance = 0; // To store the total distance covered
@@ -49,7 +52,8 @@ navigator.geolocation.watchPosition(
       console.log(`Distance covered: ${distance.toFixed(2)} meters`);
 
       if (distance.toFixed(2) >= 100.00) {
-        alert('You moved more than 100 Meters');
+        movedElement.textContent = counter;
+        counter++;
       }
     }
 
