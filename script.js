@@ -1,5 +1,12 @@
 const body = document.querySelector('.mybody');
 
+if ("vibrate" in navigator) {
+    console.log("Vibration API is supported.");
+    navigator.vibrate(500); // Example vibration
+} else {
+    console.log("Vibration API is not supported on this device.");
+}
+
 body.innerHTML = `<h1>Location Coordinates and Distance Covered</h1>
 <p>Latitude: <span id="latitude"></span></p>
 <p>Longitude: <span id="longitude"></span></p>
@@ -53,7 +60,7 @@ navigator.geolocation.watchPosition(
       console.log(`Distance covered: ${distance.toFixed(2)} meters`);
 
       if (totalDistance.toFixed(2) >= counter) {
-        alert(`You moved ${counter} meters`);
+        navigator.vibrate(1000);
       }
     }
 
