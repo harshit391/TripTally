@@ -48,7 +48,7 @@ navigator.geolocation.watchPosition(
 
       console.log(`Distance covered: ${distance.toFixed(2)} meters`);
 
-      if (distance > 1000) {
+      if (distance.toFixed(2) >= 1000.00) {
         alert('You moved more than 1 KM');
       }
     }
