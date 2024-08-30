@@ -52,10 +52,8 @@ navigator.geolocation.watchPosition(
 
       console.log(`Distance covered: ${distance.toFixed(2)} meters`);
 
-      if (distance.toFixed(2) >= counter) {
-        movedElement.textContent = idx;
-        counter += 100.00;
-        idx++;
+      if (totalDistance.toFixed(2) >= counter) {
+        alert(`You moved ${counter} meters`);
       }
     }
 
