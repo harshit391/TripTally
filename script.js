@@ -63,7 +63,7 @@ navigator.geolocation.watchPosition(
 
       console.log(`Distance covered: ${distance.toFixed(2)} meters`);
 
-      if (totalDistance.toFixed(2) >= counter) {
+      if (totalDistance.toFixed(2) >= 500.00) {
         navigator.vibrate(1000);
       }
     }
