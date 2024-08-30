@@ -17,7 +17,8 @@ const vibrateTestButton = document.getElementById('vibrate-test');
 
 vibrateTestButton.addEventListener('click', () => 
 {
-  if ("vibrate" in navigator) {
+  if ("vibrate" in navigator) 
+  {
     navigator.vibrate(500);
     movedElement.textContent = "Vibration test initiated.";
   } else {
@@ -53,10 +54,12 @@ const getAveragePosition = () =>
 {
   if (positionQueue.length === 0) return null;
   
-  const sum = positionQueue.reduce((acc, pos) => ({
+  const sum = positionQueue.reduce((acc, pos) => 
+  ({
     latitude: acc.latitude + pos.latitude,
     longitude: acc.longitude + pos.longitude
-  }), { latitude: 0, longitude: 0 });
+  }), 
+  { latitude: 0, longitude: 0 });
   
   return {
     latitude: sum.latitude / positionQueue.length,
@@ -123,6 +126,6 @@ navigator.geolocation.watchPosition(
   {
     enableHighAccuracy: true,
     maximumAge: 0,
-    timeout: 5000
+    timeout: 1000
   }
 );
