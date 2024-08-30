@@ -47,6 +47,10 @@ navigator.geolocation.watchPosition(
       distanceElement.textContent = totalDistance.toFixed(2); // Display distance covered in meters
 
       console.log(`Distance covered: ${distance.toFixed(2)} meters`);
+
+      if (distance > 1000) {
+        alert('You moved more than 1 KM');
+      }
     }
 
     // Update previous position with the current position
