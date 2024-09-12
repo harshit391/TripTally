@@ -1,13 +1,15 @@
 # TripTally
 A sleek app to manage and track your travel essentials. Organize your packing lists, set reminders for must-buy items, and get real-time notifications if you forget anything while on the go.
 
+![Main](Readme/TripTally.jpg)
+
 ---
 
 ### Index
 
 1. [Key Feaures](#key-feaures)
-2. [Pre-Requisites](#pre-requisites)
-3. [Java Script Libraries](#java-script-libraries)
+2. [Pre-Requisites](#pre-requisites-for-using-this-app-as-an-developer-and-user)
+3. [Tech Stack](#tech-stack)
 4. [Data Base](#data-base)
 5. [Setting up The Project in Your Local](#setting-up-the-project-in-your-local)
 6. [Future Scope](#future-scope)
@@ -37,9 +39,7 @@ A sleek app to manage and track your travel essentials. Organize your packing li
 - Javascript
 - Node and Express (Just for Live Server Purposes)
 
----
-
-#### Javascipt Libraries Used
+###### Javascipt Libraries Used
 - Geolocation
 
 ---
@@ -68,6 +68,11 @@ npm install
 - Run the Project
 ```bash
 npm start
+```
+
+- Open the Link in Your Browser - http://localhost:3000
+```text
+http://localhost:3000
 ```
 
 ---
