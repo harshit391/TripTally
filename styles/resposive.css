@@ -3,7 +3,7 @@
     
     .main-container h2
     {
-        font-size: 25px;
+        font-size: 30px;
         width: 100%;
     }
 
@@ -12,13 +12,42 @@
         width: 15rem;
     }
 
+    .form-container
+    {
+        align-items: center;
+    }
+
+    .coming-list, .going-list
+    {
+        align-items: center;
+    }
+
+    .form-container h2
+    {
+        text-align: center;
+    }
+
     .item button
     {
-        height: 75%;
+        height: 100%;
+        padding: 10px 0px 20px 10px;
     }
 
     .item
+    {   
+        padding: 1rem;
+        width: 30rem;
+        gap: 25px;
+    }
+
+    .item p
     {
-        width: 75%;
+        width: 18rem;
+        font-size: 18px;
+    }
+
+    .item input[type="checkbox"]
+    {
+        width: 2rem;
     }
 }
