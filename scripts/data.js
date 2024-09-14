@@ -27,6 +27,25 @@ const giveItems = () =>
     }
 }
 
+const addItems = (e) => 
+{
+    e.preventDefault();
+
+    const input = e.target.querySelector('.input');
+    
+    if (input.value) {
+        const myList = e.target.parentElement.querySelector('div');
+
+        const id = Date.now();
+        
+        addData(id, myList.className, input.value);
+
+        const currItem = new item(id, input.value, false, myList.className);
+        myList.appendChild(currItem);
+        input.value = '';
+    }
+}
+
 const loadData = () =>
 {
     const goingList = document.querySelector('.going-list');
@@ -123,7 +142,6 @@ const deleteItem = (id, type) =>
 
 const updateItem = (id, type, val) =>
 {
-    console.log('updateItem', id, type, val);
     if (type === 'going-list')
     {
         const items = localStorage.getItem('goingList');
@@ -135,8 +153,6 @@ const updateItem = (id, type, val) =>
                 ele.checked = val;
             }
         });
-
-        console.log(itemsArr);
         
         localStorage.setItem('goingList', JSON.stringify(itemsArr));
     }
