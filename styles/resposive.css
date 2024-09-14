@@ -1,0 +1,24 @@
+@media (min-width: 600px) 
+{
+    
+    .main-container h2
+    {
+        font-size: 25px;
+        width: 100%;
+    }
+
+    .form-container form input[type="text"]
+    {
+        width: 15rem;
+    }
+
+    .item button
+    {
+        height: 75%;
+    }
+
+    .item
+    {
+        width: 75%;
+    }
+}
