@@ -8,10 +8,12 @@ const addItems = (e) =>
     
     if (input.value) {
         const myList = e.target.parentElement.querySelector('div');
-        
-        addData(myList.className, input.value);
 
-        const currItem = new item(Date.now(), input.value, false, myList.className);
+        const id = Date.now();
+        
+        addData(id, myList.className, input.value);
+
+        const currItem = new item(id, input.value, false, myList.className);
         myList.appendChild(currItem);
         input.value = '';
     }

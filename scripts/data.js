@@ -1,8 +1,8 @@
 class listItem 
 {
-    constructor(value, checked, type)
+    constructor(id, value, checked, type)
     {
-        this.id = Date.now();
+        this.id = id;
         this.value = value;
         this.checked = checked;
         this.type = type;
@@ -34,20 +34,20 @@ const loadData = () =>
 
     if (goingListFromStorage) {
         goingListFromStorage.forEach((ele) => {
-            const currItem = new listItem(ele.value, ele.checked, ele.type);
+            const currItem = new listItem(ele.id, ele.value, ele.checked, ele.type);
             goingList.appendChild(currItem.item);
         });
     }
 
     if (comingListFromStorage) {
         comingListFromStorage.forEach((ele) => {
-            const currItem = new listItem(ele.value, ele.checked, ele.type);
+            const currItem = new listItem(ele.id, ele.value, ele.checked, ele.type);
             comingList.appendChild(currItem.item);
         });
     }
 }
 
-const addData = (className, val) =>
+const addData = (id, className, val) =>
 {
     if (className === 'going-list') 
     {
@@ -56,12 +56,12 @@ const addData = (className, val) =>
 
         if (!items) 
         {
-            itemsArr = [new listItem(val, false, className)];
+            itemsArr = [new listItem(id, val, false, className)];
         }
         else 
         {
             itemsArr = JSON.parse(items);
-            itemsArr.push(new listItem(val, false, className));
+            itemsArr.push(new listItem(id, val, false, className));
         }
         
         if (itemsArr)
@@ -77,12 +77,12 @@ const addData = (className, val) =>
 
         if (!items) 
         {
-            itemsArr = [new listItem(val, false, className)];
+            itemsArr = [new listItem(id, val, false, className)];
         }
         else 
         {
             itemsArr = JSON.parse(items);
-            itemsArr.push(new listItem(val, false, className));
+            itemsArr.push(new listItem(id, val, false, className));
         }
         
         localStorage.setItem('comingList', JSON.stringify(itemsArr));
