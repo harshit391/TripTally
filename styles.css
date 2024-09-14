@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+html
+{
+    font-family: 'Poppins', sans-serif;
+}
+
+.heading
+{
+    color: red;
+    font-size: 50px;
+    text-align: center;
+}
+
+.checked
+{
+    .item-text
+    {
+        text-decoration: line-through;
+    }
+}
+
+.main-container
+{
+    display: flex;
+    justify-content: space-between;
+}
+
+.main-container h2
+{
+    font-size: 15px;
+    height: 2rem;
+    width: 80%;
+}
+
+.form-container form input[type="text"]
+{
+    width: 7rem;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.form-container
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+.form-container form button
+{
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+}
+
+.coming-list, .going-list
+{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.item
+{
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0.25rem;
+}
+
+.item p
+{
+    width: 3rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.item input[type="checkbox"]
+{
+    width: 1rem;
+    padding: 1px;
+    border: none;
+    border-radius: 5px;
+}
+
+.item div
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.item button
+{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    height: 50%;
+}
