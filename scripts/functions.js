@@ -1,5 +1,6 @@
 const eleFunc = () =>
 {
+    const ttl = document.querySelector(".title");
     const ttl1 = document.querySelector(".title1");
     const ttl2 = document.querySelector(".title2");
 
@@ -13,6 +14,7 @@ const eleFunc = () =>
         ttl2.classList.add("selected");
         listcoming.style.display = "flex";
         listgoing.style.display = "none";
+        ttl.innerText = "List Coming from Trip";
     }
 
     else
@@ -20,6 +22,7 @@ const eleFunc = () =>
         ttl1.classList.add("selected");
         listcoming.style.display = "none";
         listgoing.style.display = "flex";
+        ttl.innerText = "List Going on Trip";
     }
 
     ttl1.addEventListener('click', () =>
@@ -28,6 +31,7 @@ const eleFunc = () =>
         listcoming.style.display = "none";
         listgoing.style.display = "flex";
         ttl2.classList.remove("selected");
+        ttl.innerText = "List Going on Trip";
         localStorage.setItem('defaultlist', 'going');
     });
 
@@ -37,6 +41,7 @@ const eleFunc = () =>
         listcoming.style.display = "flex";
         listgoing.style.display = "none";
         ttl1.classList.remove("selected");
+        ttl.innerText = "List Coming from Trip";
         localStorage.setItem('defaultlist', 'coming');
     });
 }

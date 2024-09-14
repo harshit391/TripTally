@@ -20,6 +20,7 @@ const load = () =>
             <div class='title1'>Going on Trip</div>
             <div class='title2'>Coming from Trip</div>
         </div>
+        <div class='title'></div>
         <div class='main-container'>
             <div class='form-container'>
                 <form class='form-going'>
