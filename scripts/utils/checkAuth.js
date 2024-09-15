@@ -8,12 +8,12 @@ const checkAuth = () => {
     
     if (token) 
     { 
-        profile.href = "../../pages/logout.html";
+        profile.href = "/index.html";
         state.innerHTML = `Logout`;
     }
     else 
     {
-        profile.href = "../../pages/user.html";
+        profile.href = "/pages/user.html";
         state.textContent = "Login / SignUp";
     }
 };
