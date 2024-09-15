@@ -8,16 +8,50 @@
     <link rel="stylesheet" href="../styles/main/styles.css">
 
     <!-- Loading the Components Css -->
-    <link rel="stylesheet" href="../styles/components/user.css">
+    <link rel="stylesheet" href="../styles/auth/user.css">
     
     <title>User Auth</title>
 </head>
 <body>
     <div class="container">
+        <h1 >
+            User Login and Sign Up
+        </h1>
+
         <div class="login-signup">
-            <div>Login</div>
-            <div>SignUp</div>
+            <div class="login-button">Already Have an Account !</div>
+            <div class="signup-button"">Register for New User</div>
+        </div>
+        <div class="l-s-container">
+            
+            <div class="login-container">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Email">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Password">
+
+                <button id="login">Login</button>
+            </div>
+
+            <div class="signup-container">
+                <label for="name">Name</label>
+                <input type="text" name="name" id="name" placeholder="Name">
+
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="Email">
+
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Password">
+
+                <button id="signup">SignUp</button>
+            </div>
+
+            <div class="error-window"></div>
+
         </div>
     </div>
+
+    <script src="../scripts/auth/user.js"></script>
+    <script src="../scripts/auth/auth.js"></script>
 </body>
 </html>

@@ -20,3 +20,10 @@ body
     background-color: #211e1e;
     color: #ffffff;
 }
+
+.selected
+{
+    background-color: #BAB700 !important;
+    color: black !important;
+    font-weight: 600;
+}

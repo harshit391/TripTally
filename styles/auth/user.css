@@ -1,0 +1,61 @@
+.container
+{
+    display: flex;
+    flex-direction: column;
+    padding: 100px;
+    gap: 25px;
+}
+
+.container h1
+{
+    font-size: 30px;
+    text-align: center;
+}
+
+.login-signup
+{
+    display: flex;
+    gap: 20px;
+}
+
+.login-signup div
+{
+    padding: 10px 20px 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: red;
+}
+
+.l-s-container div
+{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 40px;
+    justify-content: center;
+}
+
+.l-s-container input[type="email"], .l-s-container input[type="password"], .l-s-container input[type="text"]
+{
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-weight: 700;   
+}
+
+.l-s-container input[type="email"]::placeholder, .l-s-container input[type="password"]::placeholder, .l-s-container input[type="text"]::placeholder
+{
+    font-weight: 600;
+}
+
+.l-s-container button
+{
+    padding: 10px;
+    border: none;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: red;
+    color: white;
+}

@@ -57,13 +57,6 @@
     cursor: pointer;
 }
 
-.selected
-{
-    background-color: #BAB700 !important;
-    color: black !important;
-    font-weight: 600;
-}
-
 .title 
 {
     font-size: 30px;
