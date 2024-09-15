@@ -1,4 +1,5 @@
 const lists = `<div class='lists'>
+    <h1 class='heading'> Welcome to Trip Tally </h1>
             <div class='list-titles'>
                 <div class='title1'>Going on Trip</div>
                 <div class='title2'>Coming from Trip</div>
