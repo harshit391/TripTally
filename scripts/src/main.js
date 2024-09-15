@@ -15,6 +15,7 @@ const load = () =>
     }
 
     body.innerHTML = `
+        ${profile}
         <div class='locations'>
             ${locationHome}
             ${locationTrip}

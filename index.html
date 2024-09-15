@@ -3,20 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="styles/styles.css">
-    <link rel="stylesheet" type="text/css" href="styles/resposive.css">
-    <link rel="stylesheet" type="text/css" href="styles/lists.css">
+
+    <!-- Loading the Main Styles First -->
+    <link rel="stylesheet" type="text/css" href="styles/main/styles.css">
+
+    <!-- Loading the Components Styles -->
+    <link rel="stylesheet" type="text/css" href="styles/components/resposive.css">
+    <link rel="stylesheet" type="text/css" href="styles/components/lists.css">
+
     <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
     <title>TripTally</title>
 </head>
 <body>
+
+    <!-- Its Quite Amazing that a Single div can hold the whole app :) -->
     <div class="mybody"></div>
 
-    <script defer src="scripts/data.js"></script>
-    <script defer src="scripts/item.js"></script>
-    <script src="scripts/functions.js"></script>
-    <script src="scripts/elemets.js"></script>
-    <script src="scripts/location.js"></script>
-    <script src="scripts/main.js"></script>
+    <!-- Loading the Main Data base first using Defer so that the data is loaded first before the main script -->
+    <script defer src="scripts/utils/data.js"></script>
+
+    <!-- Loading Some assets for the main components -->
+    <script defer src="scripts/assets/item.js"></script>
+    <script src="scripts/assets/functions.js"></script>
+    <script src="scripts/assets/elemets.js"></script>
+
+    <!-- Loading the location Utility for the App -->
+    <script src="scripts/utils/location.js"></script>
+
+    <!-- At the Last The Main App -->
+    <script src="scripts/src/main.js"></script>
 </body>
 </html>

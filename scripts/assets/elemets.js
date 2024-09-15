@@ -44,3 +44,9 @@ const locationTrip = `<div class='location'>
                 </button>
                 <div class='trip-cords'></div>
             </div>`
+
+const profile = `
+    <div class='profile'>
+        <div>Login / SignUp</div>
+    </div>
+`

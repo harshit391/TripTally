@@ -28,6 +28,24 @@ body
     width: 100%;
 }
 
+.profile
+{
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: red;
+}
+
+.profile:hover
+{
+    background-color: #BAB700;
+    color: black;
+    font-weight: 600;
+}
+
 @media screen and (min-width: 600px)
 {
     .mybody
