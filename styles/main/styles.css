@@ -30,6 +30,8 @@ body
 
 .profile
 {
+    all: unset;
+    font-weight: 600;
     position: fixed;
     right: 20px;
     top: 20px;
