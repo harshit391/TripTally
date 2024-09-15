@@ -4,6 +4,14 @@ const signup_button = document.querySelector('.signup-button');
 const login_cont = document.querySelector('.login-container');
 const signup_cont = document.querySelector('.signup-container');
 
+const checkAuth = () => {
+    
+    if (localStorage.getItem('token')) 
+    {
+        window.location.href = '/index.html';
+    }
+}
+
 login_button.addEventListener('click', () => {
     login_button.classList.add('selected');
     signup_button.classList.remove('selected');
@@ -19,6 +27,7 @@ signup_button.addEventListener('click', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+    checkAuth();
     login_button.classList.add('selected');
     login_cont.style.display = 'flex';
     signup_cont.style.display = 'none';
