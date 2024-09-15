@@ -46,7 +46,7 @@ const locationTrip = `<div class='location'>
             </div>`
 
 const profile = `
-    <a  href='../../pages/user.html' class='profile'>
-        <div>Login / SignUp</div>
+    <a href='../../pages/user.html' class='profile'>
+        <div class='profile-state'>Login / SignUp</div>
     </a>
 `

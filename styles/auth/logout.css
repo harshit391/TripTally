@@ -1,0 +1,27 @@
+.container
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    justify-content: center;
+    padding: 50px;
+}
+
+.container a
+{
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 700;
+    background-color: red;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.container a:hover
+{
+    background-color: #BAB700;
+    color: black;
+    font-weight: 600;
+}

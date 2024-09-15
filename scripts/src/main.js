@@ -29,6 +29,8 @@ const load = () =>
 
     locationFunctions();
 
+    checkAuth();
+
     const goingForm = document.querySelector('.form-going');
     const comingForm = document.querySelector('.form-coming');
     
