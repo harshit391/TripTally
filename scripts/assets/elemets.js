@@ -45,6 +45,24 @@ const locationTrip = `<div class='location'>
                 <div class='trip-cords'></div>
             </div>`
 
+const startButtons = `
+    <div class='controls'>
+        <div class='select-control'>
+            <div>Track Home</div>
+            <div>Track Trip</div>
+        </div>
+        <div class='home-controls'>
+            <button class='home-start'>Start Tracking at Home</button>
+            <button class='home-stop'>Stop Tracking at Home</button>
+        </div>
+        <div class='trip-controls'>
+            <button class='trip-start'>Start Tracking at Trip</button>
+            <button class='trip-stop'>Stop Tracking at Trip</button>
+        </div>
+        <div class='message'></div>
+    </div>
+`
+
 const profile = `
     <a href='../../pages/user.html' class='profile'>
         <div class='profile-state'>Login / SignUp</div>

@@ -1,0 +1,61 @@
+.controls
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.select-control
+{
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.select-control div
+{
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    background-color: red;
+    cursor: pointer;
+}
+
+.select-control div:hover
+{
+    background-color: #BAB700;
+    color: black;
+}
+
+.home-controls, .trip-controls
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.home-controls button, .trip-controls button
+{
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 7px 12px 7px 12px;
+    font-size: 15px;
+    border-radius: 5px;
+    background-color: #008fba;
+    cursor: pointer;
+    font-weight: 600;
+    width: 100%;
+}
+
+.message
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    font-weight: 600;
+}

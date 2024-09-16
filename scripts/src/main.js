@@ -18,6 +18,7 @@ const load = () =>
         <div class='locations'>
             ${locationHome}
             ${locationTrip}
+            ${startButtons}
         </div>
         <div class='cont1'>
             ${profile}
@@ -32,6 +33,10 @@ const load = () =>
     locationFunctions();
 
     checkAuth();
+
+    const val = localStorage.getItem("defaultloc");
+
+    controls().Bydefault(val);
 
     const goingForm = document.querySelector('.form-going');
     const comingForm = document.querySelector('.form-coming');

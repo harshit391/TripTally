@@ -25,5 +25,5 @@ body
 {
     background-color: #BAB700 !important;
     color: black !important;
-    font-weight: 600;
+    font-weight: 600 !important;
 }

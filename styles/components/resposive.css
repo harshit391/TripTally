@@ -50,7 +50,7 @@
         justify-content: center;
         position: fixed;
         top: 0;
-        gap: 40px;
+        gap: 10px;
         z-index: 1;
     }
     
