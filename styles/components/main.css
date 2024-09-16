@@ -1,6 +1,7 @@
 .mybody{
     display: flex;
     flex-direction: column-reverse;
+    align-items: center;
     gap: 2.5rem;
     width: 100%;
     margin-top: 25px;
@@ -27,7 +28,7 @@
 }
 
 
-@media screen and (min-width: 600px)
+@media screen and (min-width: 768px)
 {
     .mybody
     {
