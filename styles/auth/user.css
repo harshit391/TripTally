@@ -54,7 +54,6 @@
 .l-s-container div
 {
     display: flex;
-    padding: 50px;
     flex-direction: column;
     gap: 10px;
     justify-content: center;
@@ -89,7 +88,8 @@
     
     .l-s-container div
     {
-        width: 40%;        
+        width: 40%; 
+        padding: 50px;       
     }
     
 }
