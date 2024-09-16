@@ -38,6 +38,7 @@
 .home-cords, .trip-cords
 {
     width: 100%;
+    font-size: 15px;
     text-align: center;
 }
 

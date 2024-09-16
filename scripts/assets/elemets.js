@@ -59,7 +59,9 @@ const startButtons = `
             <button class='trip-start'>Start Tracking at Trip</button>
             <button class='trip-stop'>Stop Tracking at Trip</button>
         </div>
-        <div class='message'></div>
+        <div class='message'>
+            
+        </div>
     </div>
 `
 
