@@ -22,7 +22,7 @@
 
 .container p
 {
-    font-size: 20px;
+    font-size: 15px;
     text-align: center;
     width: 100%;
 }
@@ -39,6 +39,7 @@
     padding: 10px 20px 10px 20px;
     border-radius: 5px;
     font-weight: 600;
+    width: 50%;
     cursor: pointer;
     background-color: red;
 }
@@ -88,8 +89,43 @@
     
     .l-s-container div
     {
+        width: 100%; 
+        padding: 50px;       
+    }
+
+    .container p
+    {
+        font-size: 25px;
+        padding: 10px;
+    }
+
+    .login-signup div
+    {
+        width: 50%;
+        text-align: center;
+    }
+    
+}
+
+@media screen and (min-width: 1024px) 
+{
+    
+    .l-s-container div
+    {
         width: 40%; 
         padding: 50px;       
     }
-    
+
+    .container p
+    {
+        width: 50%;
+        font-size: 25px;
+        padding: 10px;
+    }
+
+    .login-signup div
+    {
+        width: 25%;
+        text-align: center;
+    }   
 }
