@@ -5,6 +5,7 @@
     flex-direction: column;
     gap: 20px;
     padding: 50px;
+    background-color: #0b0000;
 }
 
 .location
@@ -13,7 +14,6 @@
     flex-direction: column;
     gap: 20px;
     width: 100%;
-    max-height: 250px;
 }
 
 .location button
@@ -46,9 +46,12 @@
     .locations
     {
         width: 25%;
-        gap: 40px;
+        height: 100vh;
         justify-content: center;
-        align-items: center;
+        position: fixed;
+        top: 0;
+        gap: 40px;
+        z-index: 1;
     }
     
 }

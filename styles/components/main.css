@@ -4,6 +4,14 @@
     align-items: center;
     gap: 2.5rem;
     width: 100%;
+}
+
+.cont1
+{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
     margin-top: 25px;
 }
 
@@ -36,4 +44,8 @@
         width: 100%;
     }
     
+    .cont1
+    {
+        margin-left: 25%;
+    }
 }

@@ -15,12 +15,14 @@ const load = () =>
     }
 
     body.innerHTML = `
-        ${profile}
         <div class='locations'>
             ${locationHome}
             ${locationTrip}
         </div>
-        ${lists}
+        <div class='cont1'>
+            ${profile}
+            ${lists}
+        </div>
     `;
 
     loadData();
