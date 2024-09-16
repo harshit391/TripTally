@@ -16,7 +16,7 @@ const controls = () =>
     
         const messageWin = document.querySelector(".message");
     
-        let homeWatchId = null; 
+        let homeWatchId = null;
         let tripWatchId = null;
     
         const checkLocation = (str) =>
@@ -48,7 +48,7 @@ const controls = () =>
             localStorage.setItem("defaultloc", "Home");
             checkLocation("Home");
             selectHome();
-        })
+        });
     
         tripTrack.addEventListener("click", () => {
             localStorage.setItem("defaultloc", "Trip");
@@ -56,36 +56,45 @@ const controls = () =>
             selectTrip();
         });
     
+        const updateMessage = (lat, lon) => {
+            messageWin.innerHTML = `Current Latitude :- ${lat} <br> Current Longitude :- ${lon}`;
+        }
+    
+        const handleError = (error) => {
+            console.error("Geolocation error: ", error);
+            messageWin.innerHTML = `Error retrieving location: ${error.message}`;
+        };
+    
         homeStart.addEventListener("click", () => {
             homeWatchId = navigator.geolocation.watchPosition((position) => {
                 const lat = position.coords.latitude;
                 const lon = position.coords.longitude;
-                messageWin.innerHTML = `Current Latitude :- ${lat} <br> Current Longitude :- ${lon}`;
-            });
-        })
+                updateMessage(lat, lon);
+            }, handleError);
+        });
     
         homeStop.addEventListener("click", () => {
             if (homeWatchId) {
                 navigator.geolocation.clearWatch(homeWatchId); // Stop watching
-                homeWatchId = null; 
+                homeWatchId = null; // Reset ID
             }
-            messageWin.innerHTML = "";
-        })
+            messageWin.innerHTML = ""; // Clear message
+        });
     
         tripStart.addEventListener("click", () => {
             tripWatchId = navigator.geolocation.watchPosition((position) => {
                 const lat = position.coords.latitude;
                 const lon = position.coords.longitude;
-                messageWin.innerHTML = `Current Latitude :- ${lat} <br> Current Longitude :- ${lon}`;
-            });
-        })
+                updateMessage(lat, lon);
+            }, handleError);
+        });
     
         tripStop.addEventListener("click", () => {
             if (tripWatchId) {
-                navigator.geolocation.clearWatch(tripWatchId); 
-                tripWatchId = null; 
+                navigator.geolocation.clearWatch(tripWatchId); // Stop watching
+                tripWatchId = null; // Reset ID
             }
-            messageWin.innerHTML = ""; 
+            messageWin.innerHTML = ""; // Clear message
         });
     
         function Bydefault(val)
@@ -102,6 +111,6 @@ const controls = () =>
     
         return {
             Bydefault
-        }; 
-    }
+        };
+    };
     
