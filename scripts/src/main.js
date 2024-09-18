@@ -15,14 +15,10 @@ const load = () =>
     }
 
     body.innerHTML = `
-        <div class='locations'>
-            ${locationHome}
-            ${locationTrip}
-            ${startButtons}
-        </div>
         <div class='cont1'>
             ${profile}
             ${lists}
+            ${testBtn}
         </div>
     `;
 
@@ -30,13 +26,19 @@ const load = () =>
 
     eleFunc();
 
-    locationFunctions();
-
     checkAuth();
 
-    const val = localStorage.getItem("defaultloc");
+    const test = document.querySelector('.test');
 
-    controls().Bydefault(val);
+    test.addEventListener('click', () => {
+        const audio = new Audio("/Jhol.mp3");
+        audio.volume = 0.02;
+        audio.play();
+        setTimeout(() => {
+            audio.pause();
+            audio.currentTime = 0; // Reset audio to the start
+          }, 10000);
+    });
 
     const goingForm = document.querySelector('.form-going');
     const comingForm = document.querySelector('.form-coming');

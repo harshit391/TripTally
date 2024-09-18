@@ -1,7 +1,7 @@
 
 const checkAuth = () => {
 
-    const profile = document.querySelector(".profile");
+    const profile = document.querySelectorAll(".profile")[1];
     const state = document.querySelector(".profile-state");
     
     const token = localStorage.getItem('token');

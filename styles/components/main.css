@@ -10,18 +10,25 @@
 {
     display: flex;
     width: 100%;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 25px;
+}
+
+.nav
+{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    color: white;
+    font-weight: 600;
 }
 
 .profile
 {
     all: unset;
     font-weight: 600;
-    position: absolute;
-    right: 20px;
-    top: 20px;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
@@ -35,17 +42,13 @@
     font-weight: 600;
 }
 
-
-@media screen and (min-width: 768px)
+/* Text Button CSs*/
+.test
 {
-    .mybody
-    {
-        flex-direction: row;
-        width: 100%;
-    }
-    
-    .cont1
-    {
-        margin-left: 25%;
-    }
+    all: unset;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: red;
 }

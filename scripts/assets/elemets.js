@@ -65,8 +65,18 @@ const startButtons = `
     </div>
 `
 
+const testBtn = `
+    <button class='test'>Test</button>
+    <p style='padding: 20px;'>Its actually My Favourite Song - Jhol</p>
+`
+
 const profile = `
-    <a href='../../pages/user.html' class='profile'>
-        <div class='profile-state'>Login / SignUp</div>
-    </a>
+    <div class='nav'>
+        <a href='/pages/configure-audio.html' class='profile'>
+            <div class='config-audio'>Configure Audio</div>
+        </a>
+        <a href='/pages/user.html' class='profile'>
+            <div class='profile-state'>Login / SignUp</div>
+        </a>
+    </div>
 `
