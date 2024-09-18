@@ -59,7 +59,6 @@ const loadConfigAudio = () =>
 
     const handleVolumeChange = (e) =>
     {
-        console.log(e.target.value);
         const volume = e.target.value;
         audio.volume = volume;
         localStorage.setItem('volume', volume);
@@ -106,8 +105,8 @@ const loadConfigAudio = () =>
         }
         
         defaultDuration = value;
+        duration.value = value;
         localStorage.setItem('duration', value);
-        
     });
 
 }
