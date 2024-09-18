@@ -29,3 +29,49 @@
     color: black;
     font-weight: 600;
 }
+
+.volume
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    height: 10px;
+}
+
+.sub-control
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 25px;
+    height: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.control-volume
+{
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.plus, .minus
+{
+    background-color: #BAB700;
+    padding: 10px 20px 10px 20px;
+    color: black;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.volume-value
+{
+    font-weight: 600;
+    text-align: center;
+    font-size: 30px;
+}

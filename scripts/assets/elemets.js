@@ -80,3 +80,14 @@ const profile = `
         </a>
     </div>
 `
+
+const volumeControl = `
+    <div class='control-volume'>
+        <input type='range' class='volume' min='0' max='1' step='0.01'>
+        <div class='sub-control'>
+            <div class='plus'>+</div>
+            <div class='minus'>-</div>
+        </div>
+        <div class='volume-value'></div>
+    </div>
+`
