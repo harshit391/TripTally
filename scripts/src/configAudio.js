@@ -103,6 +103,14 @@ const loadConfigAudio = () =>
             alert('Duration should be greater than 0');
             return;
         }
+        else if (value > 60)
+        {
+            defaultDuration = 60;
+            duration.value = 60;
+            localStorage.setItem('duration', 60);
+            alert('Duration should be less than 60');
+            return;
+        }
         
         defaultDuration = value;
         duration.value = value;
