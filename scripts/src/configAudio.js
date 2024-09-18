@@ -38,6 +38,7 @@ const loadConfigAudio = () =>
                 audio.pause();
                 audio.currentTime = 0;
                 isPlaying = false; 
+                test.innerHTML = "Test";
             }, defaultDuration * 1000);
         }
         else 
