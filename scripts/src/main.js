@@ -32,6 +32,12 @@ const load = () =>
     
     goingForm.addEventListener('submit', addItems);
     comingForm.addEventListener('submit', addItems);
+
+    const goingClear = document.querySelector('.clear-going');
+    const comingClear = document.querySelector('.clear-coming');
+
+    goingClear.addEventListener('click', clearList);
+    comingClear.addEventListener('click', clearList);
 }
 
 document.addEventListener('DOMContentLoaded', () => {

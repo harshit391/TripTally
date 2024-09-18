@@ -46,6 +46,33 @@ const addItems = (e) =>
     }
 }
 
+const clearList = (e) =>
+{
+    e.preventDefault();
+
+    const parent = e.target.parentElement;
+
+    const goingList = document.querySelector('.going-list');
+    const comingList = document.querySelector('.coming-list');
+
+    if (parent.className === 'form-going')
+    {
+        goingList.innerHTML = '';
+        localStorage.removeItem('goingList');
+    }
+    else if (parent.className === 'form-coming')
+    {
+        comingList.innerHTML = '';
+        localStorage.removeItem('comingList');
+    }
+    else
+    {
+        alert('Invalid List');
+    }
+
+
+}
+
 const loadData = () =>
 {
     const goingList = document.querySelector('.going-list');

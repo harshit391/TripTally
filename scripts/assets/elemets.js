@@ -9,14 +9,16 @@ const lists = `<div class='lists'>
                 <div class='form-container'>
                     <form class='form-going'>
                         <input type='text' class='input' placeholder='Going on Trip Items'>
-                        <button class='btn'>Add Item</button>
+                        <button class='add-btn'>Add Item</button>
+                        <button class='clear-going'>Clear List</button>
                     </form>
                     <div class='going-list'></div>
                 </div>
                 <div class='form-container'>
                     <form class='form-coming'>
                         <input type='text' class='input' placeholder='Coming from Trip Items'>
-                        <button class='btn'>Add Item</button>
+                        <button class='add-btn'>Add Item</button>
+                        <button class='clear-coming'>Clear</button>
                     </form>
                     <div class='coming-list'></div>
                 </div>
