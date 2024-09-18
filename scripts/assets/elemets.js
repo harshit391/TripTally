@@ -89,5 +89,10 @@ const volumeControl = `
             <div class='minus'>-</div>
         </div>
         <div class='volume-value'></div>
+        <div class='duration'>
+            <div class='testpara'>Set the Duration in Seconds You want the Song to be Played</div>
+            <div class='testpara'>By Default its 10 Seconds</div>
+            <input type='number' class='duration-input' placeholder='Duration in Seconds' min='1' max='120'>
+        </div>
     </div>
 `

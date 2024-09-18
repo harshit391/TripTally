@@ -3,7 +3,7 @@ const loadConfigAudio = () =>
     const mainBody = document.querySelector('.config-audio');
 
     mainBody.innerHTML = `
-        <h1 style='padding: 20px;'>Configure Your Audio</h1>
+        <h1 style='padding: 20px; text-align: center;'>Configure Your Audio</h1>
         ${testBtn}
         ${volumeControl}
 
@@ -17,6 +17,10 @@ const loadConfigAudio = () =>
 
     const currVolumeByUser = localStorage.getItem('volume');
 
+    const durationByUser = localStorage.getItem('duration');
+
+    let defaultDuration = durationByUser ? durationByUser : 10;
+
     test.addEventListener('click', () => 
     {
         if (!isPlaying) 
@@ -29,7 +33,7 @@ const loadConfigAudio = () =>
                 audio.pause();
                 audio.currentTime = 0;
                 isPlaying = false; 
-            }, 10000);
+            }, defaultDuration * 1000);
         }
     });
 
@@ -70,6 +74,27 @@ const loadConfigAudio = () =>
     volumeVal.innerHTML = `${(currvolume.value * 100).toFixed(0)}%`;
 
     currvolume.addEventListener('change', handleVolumeChange);
+
+    const duration = document.querySelector('.duration-input');
+
+    duration.value = durationByUser;
+
+    duration.addEventListener('change', () => {
+        const value = duration.value;
+
+        if (value <= 0)
+        {
+            defaultDuration = 1;
+            duration.value = 1;
+            localStorage.setItem('duration', 1);
+            alert('Duration should be greater than 0');
+            return;
+        }
+        
+        defaultDuration = value;
+        localStorage.setItem('duration', value);
+        
+    });
 
 }
 
