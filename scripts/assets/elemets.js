@@ -67,7 +67,7 @@ const startButtons = `
 
 const testBtn = `
     <button class='test'>Test</button>
-    <p style='padding: 20px;'>Its actually My Favourite Song - Jhol</p>
+    <p class='testpara' style='padding: 20px;'>Its actually My Favourite Song - Jhol</p>
 `
 
 const profile = `

@@ -27,19 +27,7 @@ const load = () =>
     eleFunc();
 
     checkAuth();
-
-    const test = document.querySelector('.test');
-
-    test.addEventListener('click', () => {
-        const audio = new Audio("/Jhol.mp3");
-        audio.volume = 0.02;
-        audio.play();
-        setTimeout(() => {
-            audio.pause();
-            audio.currentTime = 0; // Reset audio to the start
-          }, 10000);
-    });
-
+    
     const goingForm = document.querySelector('.form-going');
     const comingForm = document.querySelector('.form-coming');
     

@@ -1,0 +1,31 @@
+.config-audio
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.test
+{
+    all: unset;
+    font-weight: 600;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: red;
+}
+
+.testpara
+{
+    margin: 15px;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 5px;
+}
+
+.testpara:hover
+{
+    background-color: #BAB700;
+    color: black;
+    font-weight: 600;
+}

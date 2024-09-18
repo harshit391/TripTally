@@ -41,14 +41,3 @@
     color: black;
     font-weight: 600;
 }
-
-/* Text Button CSs*/
-.test
-{
-    all: unset;
-    font-weight: 600;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: red;
-}
