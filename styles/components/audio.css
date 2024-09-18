@@ -23,8 +23,14 @@
     border-radius: 5px;
 }
 
-.testpara:hover
-{
+.duration > .testpara:hover {
+    background-color: initial;
+    color: white;
+    font-weight: normal;
+    cursor: default;
+}
+
+.testpara:hover {
     background-color: #BAB700;
     color: black;
     font-weight: 600;

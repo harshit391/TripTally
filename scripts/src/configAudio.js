@@ -17,9 +17,13 @@ const loadConfigAudio = () =>
 
     const currVolumeByUser = localStorage.getItem('volume');
 
+    audio.volume = currVolumeByUser ? currVolumeByUser : 1;
+
     const durationByUser = localStorage.getItem('duration');
 
     let defaultDuration = durationByUser ? durationByUser : 10;
+
+    let currentTimeOut = null;
 
     test.addEventListener('click', () => 
     {
@@ -27,13 +31,22 @@ const loadConfigAudio = () =>
         { 
             audio.volume = currVolumeByUser ? currVolumeByUser : 1;
             isPlaying = true; 
+            test.innerHTML = "Stop";
 
             audio.play();
-            setTimeout(() => {
+            currentTimeOut = setTimeout(() => {
                 audio.pause();
                 audio.currentTime = 0;
                 isPlaying = false; 
             }, defaultDuration * 1000);
+        }
+        else 
+        { 
+            audio.pause();
+            audio.currentTime = 0;
+            isPlaying = false; 
+            clearTimeout(currentTimeOut);
+            test.innerHTML = "Test";
         }
     });
 
