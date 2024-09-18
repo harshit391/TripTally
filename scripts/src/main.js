@@ -18,7 +18,6 @@ const load = () =>
         <div class='cont1'>
             ${profile}
             ${lists}
-            ${testBtn}
         </div>
     `;
 
@@ -27,7 +26,7 @@ const load = () =>
     eleFunc();
 
     checkAuth();
-    
+
     const goingForm = document.querySelector('.form-going');
     const comingForm = document.querySelector('.form-coming');
     

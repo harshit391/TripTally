@@ -52,7 +52,7 @@ const loadConfigAudio = () =>
     });
 
     document.querySelector('.testpara').addEventListener('click', () => {
-        window.location.href = "https://www.youtube.com/watch?v=-2RAq5o5pwc&pp=ygUEamhvbA%3D%3D";
+        window.location.href = "https://www.youtube.com/watch?v=-2RAq5o5pwc&t=10s";
     });
 
     const volumeVal = document.querySelector('.volume-value');

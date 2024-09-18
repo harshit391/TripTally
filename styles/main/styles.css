@@ -27,3 +27,27 @@ body
     color: black !important;
     font-weight: 600 !important;
 }
+
+.profile
+{
+    all: unset;
+    text-align: center;
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: red;
+}
+
+.profile a
+{
+    text-decoration: none;
+    color: white;
+}
+
+.profile:hover
+{
+    background-color: #BAB700;
+    color: black;
+    font-weight: 600;
+}

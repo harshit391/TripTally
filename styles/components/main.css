@@ -24,20 +24,3 @@
     color: white;
     font-weight: 600;
 }
-
-.profile
-{
-    all: unset;
-    font-weight: 600;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    background-color: red;
-}
-
-.profile:hover
-{
-    background-color: #BAB700;
-    color: black;
-    font-weight: 600;
-}
