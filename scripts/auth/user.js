@@ -6,29 +6,34 @@ const signup_cont = document.querySelector('.signup-container');
 
 const checkAuth = () => {
 
-    const token = document.cookie.split(';').find(cookie => cookie.includes('token')).split('=')[1];
-    
-    if (token !== null && token !== undefined && token !== '') 
+    const cookie = document.cookie;
+
+    if (cookie !== null && cookie !== undefined && cookie !== '')
     {
-        const userDB = localStorage.getItem('users');
+        const token = cookie.split(';').find(cookie => cookie.includes('token')).split('=')[1];
 
-        if (userDB !== null)
+        if (token !== null && token !== undefined && token !== '') 
         {
-            const user = JSON.parse(userDB).find(user => user.id === parseInt(token));
+            const userDB = localStorage.getItem('users');
 
-            if (user !== undefined || user !== null)
+            if (userDB !== null)
             {
-                alert("Already Logged In");
-                window.location.href = '/index.html';
-                return;
-            }
-            else
-            {
-                alert("Invalid Token. Please login again.");    
-                window.location.href = '/login.html';
-                return;
-            }
-        }   
+                const user = JSON.parse(userDB).find(user => user.id === parseInt(token));
+
+                if (user !== undefined || user !== null)
+                {
+                    alert("Already Logged In");
+                    window.location.href = '/index.html';
+                    return;
+                }
+                else
+                {
+                    alert("Invalid Token. Please login again.");    
+                    window.location.href = '/login.html';
+                    return;
+                }
+            }   
+        }
     }
 }
 
@@ -48,6 +53,7 @@ signup_button.addEventListener('click', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     checkAuth();
+    console.log('Loaded');
     login_button.classList.add('selected');
     login_cont.style.display = 'flex';
     signup_cont.style.display = 'none';

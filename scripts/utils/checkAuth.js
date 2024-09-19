@@ -3,7 +3,7 @@ const checkAuthState = () =>
     const profileCover = document.querySelectorAll(".profile")[1];
     const profile = document.querySelector(".profile-state");
 
-    const token = document.cookie.split(';').find(cookie => cookie.includes('token')).split('=')[1];
+    const cookie = document.cookie;
 
     profile.addEventListener('click', () => {
         if (profile.innerHTML === 'Logout')
@@ -16,30 +16,41 @@ const checkAuthState = () =>
             window.location.href = '/pages/user.html';
         }
     });
-    
-    if (token !== null && token !== undefined && token !== '') 
+
+    if (cookie !== null && cookie !== undefined && cookie !== '')
     {
-        const userDB = localStorage.getItem('users');
+        const token = cookie.split(';').find(cookie => cookie.includes('token')).split('=')[1];
 
-        if (userDB !== null)
+        if (token !== null && token !== undefined && token !== '') 
         {
-            const user = JSON.parse(userDB).find(user => user.id === parseInt(token));
+            const userDB = localStorage.getItem('users');
 
-            if (user !== undefined || user !== null)
+            if (userDB !== null)
             {
-                profileCover.href = '/index.html';
-                profile.innerHTML = 'Logout';
-            }
-            else
-            {
-                profileCover.href = '/pages/user.html';
-                profile.innerHTML = 'Login / SignUp';
-            }
-        }   
+                const user = JSON.parse(userDB).find(user => user.id === parseInt(token));
+
+                if (user !== undefined || user !== null)
+                {
+                    profileCover.href = '/index.html';
+                    profile.innerHTML = 'Logout';
+                }
+                else
+                {
+                    profileCover.href = '/pages/user.html';
+                    profile.innerHTML = 'Login / SignUp';
+                }
+            }   
+        }
+        else
+        {
+            profileCover.href = '/pages/user.html';
+            profile.innerHTML = 'Login / SignUp';
+        }
     }
     else
     {
         profileCover.href = '/pages/user.html';
         profile.innerHTML = 'Login / SignUp';
     }
+    
 }
