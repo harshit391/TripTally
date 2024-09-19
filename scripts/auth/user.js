@@ -53,7 +53,6 @@ signup_button.addEventListener('click', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     checkAuth();
-    console.log('Loaded');
     login_button.classList.add('selected');
     login_cont.style.display = 'flex';
     signup_cont.style.display = 'none';

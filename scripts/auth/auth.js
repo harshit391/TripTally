@@ -29,6 +29,7 @@ const login = (email, password) =>
 
         if (!exists)
         {
+            document.getElementById("errwin").scrollIntoView();
             error_window.innerHTML = 'Invalid User Name or Password';
             return;
         }
@@ -74,14 +75,15 @@ const signup = (username, password, email) =>
 
 login_btn.addEventListener('click', () => {
 
-    const email = document.querySelector(".login-container #email");
+    const email = document.querySelector(".login-container #email-login");
 
-    const password = document.querySelector(".login-container #password");
+    const password = document.querySelector(".login-container #password-login");
 
     const usersDB = localStorage.getItem('users');
 
     if (usersDB === null)
     {
+        document.getElementById("errwin").scrollIntoView();
         error_window.innerHTML = 'User does not exist';
         return;
     }
@@ -91,6 +93,7 @@ login_btn.addEventListener('click', () => {
 
         if (!user)
         {
+            document.getElementById("errwin").scrollIntoView();
             error_window.innerHTML = 'Invalid User Name or Password';
             return;
         }
@@ -110,11 +113,13 @@ signup_btn.addEventListener('click', () => {
 
     if (name.value === '' || email.value === '' || password.value === '')
     {
+        document.getElementById("errwin").scrollIntoView();
         error_window.innerHTML = 'Please fill all fields';
         return;
     }
     else if (email.value.indexOf('@') === -1)
     {
+        document.getElementById("errwin").scrollIntoView();
         error_window.innerHTML = 'Invalid email';
         return;
     }
