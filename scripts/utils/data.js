@@ -100,7 +100,7 @@ const addItems = (e) =>
     if (input.value) {
         const myList = e.target.parentElement.querySelector('div');
 
-        const id = hashIt(Date.now());
+        const id = Date.now();
         
         addData(id, myList.className, input.value);
 
