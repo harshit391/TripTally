@@ -3,35 +3,104 @@ const error_window = document.querySelector('.error-window');
 const login_btn = document.querySelector('#login');
 const signup_btn = document.querySelector('#signup');
 
+class User 
+{
+    constructor(username, password, email)
+    {
+        this.id = Date.now();
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+}
+
 const login = () =>
 {
-    localStorage.setItem('token', 'token');
-    alert('User logged in successfully');
     window.location.href = '/index.html';
 }
 
-const signup = () =>
+const signup = (username, password, email) =>
 {
-    if (localStorage.getItem('token') === 'token')
+    const usersDB = localStorage.getItem('users');
+
+    let users = [];
+
+    if (usersDB !== null)
     {
-        error_window.style.display = 'flex';
-        error_window.textContent = 'User already exists';
+        const exists = JSON.parse(usersDB).find(user => user.email === email);
+
+        if (exists)
+        {
+            error_window.innerHTML = `User already exists`;
+            return;
+        }
+
+        users = JSON.parse(usersDB);
+    }   
+
+    error_window.innerHTML = '';
+
+    const curruser = new User(username, password, email);
+
+    users.push(curruser);
+
+    localStorage.setItem('users', JSON.stringify(users));
+
+    localStorage.setItem("token", curruser.id);
+
+    window.location.href = '/index.html';
+}
+
+login_btn.addEventListener('click', () => {
+
+    const email = document.querySelector(".login-container #email");
+
+    const password = document.querySelector(".login-container #password");
+
+    const usersDB = localStorage.getItem('users');
+
+    if (usersDB === null)
+    {
+        error_window.innerHTML = 'User does not exist';
         return;
     }
     else
     {
-        localStorage.setItem('token', 'token');
-        alert('User created successfully');
-        window.location.href = '/index.html';
-    }
-}
+        const user = JSON.parse(usersDB).find(user => user.email === email.value && user.password === password.value);
 
-login_btn.addEventListener('click', () => {
-    login();
-    error_window.style.display = 'none';
+        if (!user)
+        {
+            error_window.innerHTML = 'Invalid User Name or Password';
+            return;
+        }
+    }
+
+    error_window.innerHTML = '';
+    login(email.value, password.value);
 });
 
 signup_btn.addEventListener('click', () => {
-    signup();
-    error_window.style.display = 'none';
+
+    const name = document.querySelector(".signup-container #name");
+
+    const email = document.querySelector(".signup-container #email");
+
+    const password = document.querySelector(".signup-container #password");
+
+    if (name.value === '' || email.value === '' || password.value === '')
+    {
+        error_window.innerHTML = 'Please fill all fields';
+        return;
+    }
+    else if (email.value.indexOf('@') === -1)
+    {
+        error_window.innerHTML = 'Invalid email';
+        return;
+    }
+    else
+    {
+        error_window.innerHTML = '';
+    }
+
+    signup(name.value, password.value, email.value);
 });

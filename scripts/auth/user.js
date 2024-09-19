@@ -5,10 +5,29 @@ const login_cont = document.querySelector('.login-container');
 const signup_cont = document.querySelector('.signup-container');
 
 const checkAuth = () => {
+
+    const token = localStorage.getItem('token');
     
-    if (localStorage.getItem('token')) 
+    if (token !== null) 
     {
-        window.location.href = '/index.html';
+        const userDB = localStorage.getItem('users');
+
+        if (userDB !== null)
+        {
+            const user = JSON.parse(userDB).find(user => user.id === parseInt(token));
+
+            if (user !== undefined || user !== null)
+            {
+                alert("Already Logged In");
+                window.location.href = '/index.html';
+            }
+            else
+            {
+                alert("Invalid Token. Please login again.");    
+                window.location.href = '/login.html';
+            }
+        }
+        
     }
 }
 

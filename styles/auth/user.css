@@ -84,6 +84,14 @@
     color: white;
 }
 
+.error-window
+{
+    color: white;
+    text-align: center;
+    padding: 1px !important;
+    margin-bottom: 10px;
+}
+
 @media screen and (min-width: 600px) 
 {
     
