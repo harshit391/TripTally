@@ -54,6 +54,7 @@ const signup = (username, password, email) =>
 
         if (exists)
         {
+            document.getElementById("errwin").scrollIntoView();
             error_window.innerHTML = `User already exists`;
             return;
         }
