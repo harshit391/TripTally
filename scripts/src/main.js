@@ -23,10 +23,6 @@ const load = () =>
 
     checkAuthState();
 
-    loadDataBase();
-
-    loadData();
-
     eleFunc();
 
     const goingForm = document.querySelector('.form-going');

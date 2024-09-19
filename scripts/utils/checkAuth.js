@@ -9,6 +9,7 @@ const checkAuthState = () =>
         if (profile.innerHTML === 'Logout')
         {
             document.cookie = `token=;path=/;`;
+            loadDataBase();
             window.location.href = '/index.html';
         }
         else
@@ -31,6 +32,7 @@ const checkAuthState = () =>
 
                 if (user !== undefined || user !== null)
                 {
+                    loadDataBase();
                     profileCover.href = '/index.html';
                     profile.innerHTML = 'Logout';
                 }
@@ -77,6 +79,7 @@ const checkAuth = () => {
                 if (user !== undefined || user !== null)
                 {
                     alert("Already Logged In");
+                    loadDataBase();
                     window.location.href = '/index.html';
                     return;
                 }
