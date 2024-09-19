@@ -27,6 +27,8 @@ const load = () =>
 
     checkAuthState();
 
+    loadDataBase();
+
     const goingForm = document.querySelector('.form-going');
     const comingForm = document.querySelector('.form-coming');
     

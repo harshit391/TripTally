@@ -61,6 +61,20 @@ const signup = (username, password, email) =>
 
     document.cookie = `token=${curruser.id};path=/`;
 
+    const dataDB = localStorage.getItem('data');
+
+    if (dataDB === null)
+    {
+        const data = new UserData(curruser.id);
+        localStorage.setItem('data', JSON.stringify([data]));
+    }
+    else
+    {
+        const storage = JSON.parse(dataDB);
+        const data = new UserData(curruser.id);
+        storage.push(data);
+    }
+
     window.location.href = '/index.html';
 }
 

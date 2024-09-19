@@ -37,7 +37,7 @@ const getDataBase = () => {
     {
         storage = JSON.parse(dataDB);
 
-        if (storage.length > 0)
+        if (storage !== null && storage.length > 0)
         {
             storage.forEach((ele) => {
                 if (ele.id === token) {
@@ -58,8 +58,6 @@ const getDataBase = () => {
         storage.push(database);
         uploadDataBase();
     }
-
-    console.log(database);
 }
 
 const uploadDataBase = () => {
@@ -163,7 +161,7 @@ const addData = (id, className, val) =>
 {
     if (className === 'going-list') 
     {
-        const items = database.goingList;
+        const items = database ? database.goingList : [];
         var itemsArr = null;
 
         if (!items) 
@@ -187,7 +185,7 @@ const addData = (id, className, val) =>
     }
     else if (className === 'coming-list')
     {
-        const items = database.comingList;
+        const items = database ? database.comingList : [];
         var itemsArr = null;
 
         if (!items || items.length === 0) 
@@ -287,8 +285,9 @@ const updateItem = (id, type, val) =>
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+const loadDataBase = () => 
+{
     getDataBase();
     giveItems();
     loadData();
-});
+}
