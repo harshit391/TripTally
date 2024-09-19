@@ -6,7 +6,6 @@ class listItem
         this.value = value;
         this.checked = checked;
         this.type = type;
-        this.item = new item(id, value, checked, type);
     }
 }
 
@@ -101,7 +100,7 @@ const addItems = (e) =>
     if (input.value) {
         const myList = e.target.parentElement.querySelector('div');
 
-        const id = Date.now();
+        const id = hashIt(Date.now());
         
         addData(id, myList.className, input.value);
 
@@ -138,8 +137,6 @@ const clearList = (e) =>
     {
         alert('Invalid List');
     }
-
-
 }
 
 const loadData = () =>
@@ -256,7 +253,7 @@ const updateItem = (id, type, val) =>
     {
         const items = database.goingList;
         
-        const itemsArr = JSON.parse(items);
+        const itemsArr = [...items];
         
         itemsArr.forEach((ele) => {
             if (ele.id === id) {
@@ -270,9 +267,9 @@ const updateItem = (id, type, val) =>
     }
     else if (type === 'coming-list')
     {
-        const items = localStorage.getItem('comingList');
+        const items = database.comingList;
         
-        const itemsArr = JSON.parse(items);
+        const itemsArr = [...items];
         
         itemsArr.forEach((ele) => {
             if (ele.id === id) {
