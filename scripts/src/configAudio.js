@@ -1,5 +1,7 @@
 const loadConfigAudio = () => 
 {
+    getDataBase();
+
     const mainBody = document.querySelector('.config-audio');
 
     mainBody.innerHTML = `
@@ -15,11 +17,11 @@ const loadConfigAudio = () =>
 
     let audio = new Audio("/Jhol.mp3");
 
-    const currVolumeByUser = localStorage.getItem('volume');
+    const currVolumeByUser = database.volume;
 
     audio.volume = currVolumeByUser ? currVolumeByUser : 1;
 
-    const durationByUser = localStorage.getItem('duration');
+    const durationByUser = database.duration;
 
     let defaultDuration = durationByUser ? durationByUser : 10;
 
@@ -61,7 +63,8 @@ const loadConfigAudio = () =>
     {
         const volume = e.target.value;
         audio.volume = volume;
-        localStorage.setItem('volume', volume);
+        database.volume = volume;
+        uploadDataBase();
         volumeVal.innerHTML = `${(volume * 100).toFixed(0)}%`;
     }
 
@@ -69,7 +72,8 @@ const loadConfigAudio = () =>
 
     plus.addEventListener('click', () => {
         audio.volume = Math.min(1, audio.volume + 0.01);
-        localStorage.setItem('volume', audio.volume);
+        database.volume = audio.volume;
+        uploadDataBase();
         volumeVal.innerHTML = `${(audio.volume * 100).toFixed(0)}%`;
     });
 
@@ -77,7 +81,8 @@ const loadConfigAudio = () =>
 
     minus.addEventListener('click', () => {
         audio.volume = Math.max(0, audio.volume - 0.01);
-        localStorage.setItem('volume', audio.volume);
+        database.volume = audio.volume;
+        uploadDataBase();
         volumeVal.innerHTML = `${(audio.volume * 100).toFixed(0)}%`;
     });
 
@@ -91,6 +96,7 @@ const loadConfigAudio = () =>
     const duration = document.querySelector('.duration-input');
 
     duration.value = durationByUser;
+    uploadDataBase();
 
     duration.addEventListener('change', () => {
         const value = duration.value;
@@ -99,7 +105,8 @@ const loadConfigAudio = () =>
         {
             defaultDuration = 1;
             duration.value = 1;
-            localStorage.setItem('duration', 1);
+            database.duration = 1;
+            uploadDataBase();
             alert('Duration should be greater than 0');
             return;
         }
@@ -107,14 +114,16 @@ const loadConfigAudio = () =>
         {
             defaultDuration = 60;
             duration.value = 60;
-            localStorage.setItem('duration', 60);
+            database.duration = 60;
+            uploadDataBase();
             alert('Duration should be less than 60');
             return;
         }
         
         defaultDuration = value;
         duration.value = value;
-        localStorage.setItem('duration', value);
+        database.duration = value;
+        uploadDataBase();
     });
 
 }

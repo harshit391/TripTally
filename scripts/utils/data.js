@@ -16,8 +16,9 @@ class UserData
         this.id = id;
         this.goingList = [];
         this.comingList = [];
-        this.durations = 10;
-        this.volume = 0.1; 
+        this.duration = 10;
+        this.volume = 0.1;
+        this.defaultlist = "going";
     }
 }
 

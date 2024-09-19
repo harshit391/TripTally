@@ -14,7 +14,7 @@ const eleFunc = () =>
     const listcoming = document.querySelectorAll(".form-container")[1];
     const listgoing = document.querySelectorAll(".form-container")[0];
 
-    const defaultlist = localStorage.getItem('defaultlist');
+    const defaultlist = database.defaultlist;
     
     if(defaultlist === "coming")
     {
@@ -39,7 +39,8 @@ const eleFunc = () =>
         listgoing.style.display = "flex";
         ttl2.classList.remove("selected");
         ttl.innerText = "List Going on Trip";
-        localStorage.setItem('defaultlist', 'going');
+        database.defaultlist = "going";
+        uploadDataBase();
     });
 
     ttl2.addEventListener('click', () =>
@@ -49,7 +50,8 @@ const eleFunc = () =>
         listgoing.style.display = "none";
         ttl1.classList.remove("selected");
         ttl.innerText = "List Coming from Trip";
-        localStorage.setItem('defaultlist', 'coming');
+        database.defaultlist = "coming";
+        uploadDataBase();
     });
 }
 

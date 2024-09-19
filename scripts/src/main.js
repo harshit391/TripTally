@@ -21,13 +21,13 @@ const load = () =>
         </div>
     `;
 
-    loadData();
-
-    eleFunc();
-
     checkAuthState();
 
     loadDataBase();
+
+    loadData();
+
+    eleFunc();
 
     const goingForm = document.querySelector('.form-going');
     const comingForm = document.querySelector('.form-coming');
