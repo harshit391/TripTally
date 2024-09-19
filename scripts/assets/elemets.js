@@ -5,6 +5,7 @@ const lists = `<div class='lists'>
                 <div class='title2'>Coming from Trip</div>
             </div>
             <div class='title'></div>
+            <div class='tracking'>Start Tracking</div>
             <div class='main-container'>
                 <div class='form-container'>
                     <form class='form-going'>

@@ -4,11 +4,18 @@ const eleFunc = () =>
     const ttl1 = document.querySelector(".title1");
     const ttl2 = document.querySelector(".title2");
 
+    const track = document.querySelector(".tracking");
+
+    track.addEventListener("click", () => {
+        track.classList.toggle("selected");
+        track.innerText =  track.classList.contains("selected") ? "Stop Tracking" : "Start Tracking";
+    });
+
     const listcoming = document.querySelectorAll(".form-container")[1];
     const listgoing = document.querySelectorAll(".form-container")[0];
 
     const defaultlist = localStorage.getItem('defaultlist');
-
+    
     if(defaultlist === "coming")
     {
         ttl2.classList.add("selected");
