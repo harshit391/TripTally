@@ -36,6 +36,7 @@ const checkAuthState = () =>
                 }
                 else
                 {
+                    window.location.href = '/pages/user.html';
                     profileCover.href = '/pages/user.html';
                     profile.innerHTML = 'Login / SignUp';
                 }
@@ -43,12 +44,14 @@ const checkAuthState = () =>
         }
         else
         {
+            window.location.href = '/pages/user.html';
             profileCover.href = '/pages/user.html';
             profile.innerHTML = 'Login / SignUp';
         }
     }
     else
     {
+        window.location.href = '/pages/user.html';
         profileCover.href = '/pages/user.html';
         profile.innerHTML = 'Login / SignUp';
     }
