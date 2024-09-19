@@ -20,6 +20,7 @@ const login = (email, password) =>
 
     if (usersDB === null)
     {
+        document.getElementById("errwin").scrollIntoView();
         error_window.innerHTML = 'User does not exist';
         return;
     }
@@ -75,6 +76,8 @@ const signup = (username, password, email) =>
 
 login_btn.addEventListener('click', () => {
 
+    error_window.innerHTML = '';
+
     const email = document.querySelector(".login-container #email-login");
 
     const password = document.querySelector(".login-container #password-login");
@@ -110,6 +113,8 @@ signup_btn.addEventListener('click', () => {
     const email = document.querySelector(".signup-container #email");
 
     const password = document.querySelector(".signup-container #password");
+
+    error_window.innerHTML = '';
 
     if (name.value === '' || email.value === '' || password.value === '')
     {

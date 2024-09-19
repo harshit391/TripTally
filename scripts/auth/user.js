@@ -38,6 +38,7 @@ const checkAuth = () => {
 }
 
 login_button.addEventListener('click', () => {
+    document.getElementById("errwin").innerHTML = '';
     login_button.classList.add('selected');
     signup_button.classList.remove('selected');
     login_cont.style.display = 'flex';
@@ -45,6 +46,7 @@ login_button.addEventListener('click', () => {
 });
 
 signup_button.addEventListener('click', () => {
+    document.getElementById("errwin").innerHTML = '';
     signup_button.classList.add('selected');
     login_button.classList.remove('selected');
     signup_cont.style.display = 'flex';
@@ -53,6 +55,7 @@ signup_button.addEventListener('click', () => {
 
 document.addEventListener('DOMContentLoaded', () => {
     checkAuth();
+    document.getElementById("errwin").innerHTML = '';
     login_button.classList.add('selected');
     login_cont.style.display = 'flex';
     signup_cont.style.display = 'none';

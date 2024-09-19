@@ -52,3 +52,12 @@ body
     color: black;
     font-weight: 600;
 }
+
+.error-window
+{
+    color: white;
+    text-align: center;
+    padding: 10px !important;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
