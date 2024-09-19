@@ -34,7 +34,7 @@ const login = (email, password) =>
         }
         else
         {
-            localStorage.setItem("token", exists.id);
+            document.cookie = `token=${exists.id};path=/`;
             window.location.href = '/index.html';
         }
     }
@@ -67,7 +67,7 @@ const signup = (username, password, email) =>
 
     localStorage.setItem('users', JSON.stringify(users));
 
-    localStorage.setItem("token", curruser.id);
+    document.cookie = `token=${curruser.id};path=/`;
 
     window.location.href = '/index.html';
 }

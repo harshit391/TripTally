@@ -6,7 +6,7 @@ const signup_cont = document.querySelector('.signup-container');
 
 const checkAuth = () => {
 
-    const token = localStorage.getItem('token');
+    const token = document.cookie.split(';').find(cookie => cookie.includes('token')).split('=')[1];
     
     if (token !== null) 
     {
