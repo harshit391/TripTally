@@ -57,3 +57,36 @@ const checkAuthState = () =>
     }
     
 }
+
+const checkAuth = () => {
+
+    const cookie = document.cookie;
+
+    if (cookie !== null && cookie !== undefined && cookie !== '')
+    {
+        const token = cookie.split(';').find(cookie => cookie.includes('token')).split('=')[1];
+
+        if (token !== null && token !== undefined && token !== '') 
+        {
+            const userDB = localStorage.getItem('users');
+
+            if (userDB !== null)
+            {
+                const user = JSON.parse(userDB).find(user => user.id === parseInt(token));
+
+                if (user !== undefined || user !== null)
+                {
+                    alert("Already Logged In");
+                    window.location.href = '/index.html';
+                    return;
+                }
+                else
+                {
+                    alert("Invalid Token. Please login again.");    
+                    window.location.href = '/login.html';
+                    return;
+                }
+            }   
+        }
+    }
+}

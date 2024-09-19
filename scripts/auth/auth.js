@@ -3,17 +3,6 @@ const error_window = document.querySelector('.error-window');
 const login_btn = document.querySelector('#login');
 const signup_btn = document.querySelector('#signup');
 
-class User 
-{
-    constructor(username, password, email)
-    {
-        this.id = Date.now();
-        this.username = username;
-        this.password = password;
-        this.email = email;
-    }
-}
-
 const login = (email, password) =>
 {
     const usersDB = localStorage.getItem('users');
@@ -136,3 +125,33 @@ signup_btn.addEventListener('click', () => {
 
     signup(name.value, password.value, email.value);
 });
+
+const login_button = document.querySelector('.login-button');
+const signup_button = document.querySelector('.signup-button');
+
+const login_cont = document.querySelector('.login-container');
+const signup_cont = document.querySelector('.signup-container');
+
+login_button.addEventListener('click', () => {
+    document.getElementById("errwin").innerHTML = '';
+    login_button.classList.add('selected');
+    signup_button.classList.remove('selected');
+    login_cont.style.display = 'flex';
+    signup_cont.style.display = 'none';
+});
+
+signup_button.addEventListener('click', () => {
+    document.getElementById("errwin").innerHTML = '';
+    signup_button.classList.add('selected');
+    login_button.classList.remove('selected');
+    signup_cont.style.display = 'flex';
+    login_cont.style.display = 'none';
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+    checkAuth();
+    document.getElementById("errwin").innerHTML = '';
+    login_button.classList.add('selected');
+    login_cont.style.display = 'flex';
+    signup_cont.style.display = 'none';
+})

@@ -66,7 +66,13 @@
         </div>
     </div>
 
-    <script src="../scripts/auth/user.js"></script>
-    <script src="../scripts/auth/auth.js"></script>
+    <!-- Loading the User Class First -->
+    <script defer src="/scripts/auth/user.js"></script>
+
+    <!-- Loading The Check Auth Scripts -->
+    <script src="/scripts/utils/checkAuth.js"></script>
+    
+    <!-- Loading the Auth Scripts -->
+    <script src="/scripts/auth/auth.js"></script>
 </body>
 </html>
