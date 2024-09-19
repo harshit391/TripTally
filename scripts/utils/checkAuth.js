@@ -9,7 +9,6 @@ const checkAuthState = () =>
         if (profile.innerHTML === 'Logout')
         {
             document.cookie = `token=;path=/;`;
-            loadDataBase();
             window.location.href = '/index.html';
         }
         else
