@@ -8,7 +8,7 @@ const checkAuth = () => {
 
     const token = document.cookie.split(';').find(cookie => cookie.includes('token')).split('=')[1];
     
-    if (token !== null) 
+    if (token !== null && token !== undefined && token !== '') 
     {
         const userDB = localStorage.getItem('users');
 
@@ -20,14 +20,15 @@ const checkAuth = () => {
             {
                 alert("Already Logged In");
                 window.location.href = '/index.html';
+                return;
             }
             else
             {
                 alert("Invalid Token. Please login again.");    
                 window.location.href = '/login.html';
+                return;
             }
-        }
-        
+        }   
     }
 }
 

@@ -25,7 +25,7 @@ const load = () =>
 
     eleFunc();
 
-    checkAuth();
+    checkAuthState();
 
     const goingForm = document.querySelector('.form-going');
     const comingForm = document.querySelector('.form-coming');

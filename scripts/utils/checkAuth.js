@@ -1,32 +1,45 @@
+const checkAuthState = () =>
+{
+    const profileCover = document.querySelectorAll(".profile")[1];
+    const profile = document.querySelector(".profile-state");
 
-const checkAuth = () => {
+    const token = document.cookie.split(';').find(cookie => cookie.includes('token')).split('=')[1];
 
-    const profile = document.querySelectorAll(".profile")[1];
-    const state = document.querySelector(".profile-state");
-    
-    const token = localStorage.getItem('token');
-
-    state.addEventListener('click', () => {
-        if (token) 
+    profile.addEventListener('click', () => {
+        if (profile.innerHTML === 'Logout')
         {
-            localStorage.removeItem('token');
-            alert("You have been logged out");
-            window.location.reload();
+            document.cookie = `token=;path=/;`;
+            window.location.href = '/index.html';
         }
-        else 
+        else
         {
-            location.href = "/pages/user.html";
+            window.location.href = '/pages/user.html';
         }
-    })
+    });
     
-    if (token) 
-    { 
-        profile.href = "/index.html";
-        state.innerHTML = `Logout`;
-    }
-    else 
+    if (token !== null && token !== undefined && token !== '') 
     {
-        profile.href = "/pages/user.html";
-        state.textContent = "Login / SignUp";
+        const userDB = localStorage.getItem('users');
+
+        if (userDB !== null)
+        {
+            const user = JSON.parse(userDB).find(user => user.id === parseInt(token));
+
+            if (user !== undefined || user !== null)
+            {
+                profileCover.href = '/index.html';
+                profile.innerHTML = 'Logout';
+            }
+            else
+            {
+                profileCover.href = '/pages/user.html';
+                profile.innerHTML = 'Login / SignUp';
+            }
+        }   
     }
-};
+    else
+    {
+        profileCover.href = '/pages/user.html';
+        profile.innerHTML = 'Login / SignUp';
+    }
+}

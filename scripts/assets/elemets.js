@@ -19,7 +19,7 @@ const lists = `<div class='lists'>
                     <form class='form-coming'>
                         <input type='text' class='input' placeholder='Coming from Trip Items'>
                         <button class='add-btn'>Add Item</button>
-                        <button class='clear-comingcode .'>Clear</button>
+                        <button class='clear-coming'>Clear</button>
                     </form>
                     <div class='coming-list'></div>
                 </div>
