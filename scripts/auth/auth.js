@@ -14,9 +14,30 @@ class User
     }
 }
 
-const login = () =>
+const login = (email, password) =>
 {
-    window.location.href = '/index.html';
+    const usersDB = localStorage.getItem('users');
+
+    if (usersDB === null)
+    {
+        error_window.innerHTML = 'User does not exist';
+        return;
+    }
+    else
+    {
+        const exists = JSON.parse(usersDB).find(user => user.email === email && user.password === password);
+
+        if (!exists)
+        {
+            error_window.innerHTML = 'Invalid User Name or Password';
+            return;
+        }
+        else
+        {
+            localStorage.setItem("token", exists.id);
+            window.location.href = '/index.html';
+        }
+    }
 }
 
 const signup = (username, password, email) =>
