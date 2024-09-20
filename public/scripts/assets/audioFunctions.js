@@ -1,16 +1,5 @@
-const loadConfigAudio = () => 
+const audioFunction = () =>
 {
-    getDataBase();
-
-    const mainBody = document.querySelector('.config-audio');
-
-    mainBody.innerHTML = `
-        <h1 style='padding: 20px; text-align: center;'>Configure Your Audio</h1>
-        ${testBtn}
-        ${volumeControl}
-
-    `
-
     const test = document.querySelector('.test');
 
     let isPlaying = false; 
@@ -125,7 +114,4 @@ const loadConfigAudio = () =>
         database.duration = value;
         uploadDataBase();
     });
-
 }
-
-document.addEventListener('DOMContentLoaded', loadConfigAudio);

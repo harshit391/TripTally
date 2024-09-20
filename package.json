@@ -1,0 +1,15 @@
+{
+  "name": "triptally",
+  "version": "1.0.0",
+  "description": "A sleek app to manage and track your travel essentials. Organize your packing lists, set reminders for must-buy items, and get real-time notifications if you forget anything while on the go.",
+  "main": "index.js",
+  "scripts": {
+    "start" : "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}

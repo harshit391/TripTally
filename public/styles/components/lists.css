@@ -10,11 +10,16 @@
     width: 100%;
 }
 
+.welcome
+{
+    font-size: 35px;
+    text-align: center;
+}   
+
 .heading
 {
-    margin-top: 2rem;
     color: white;
-    font-size: 50px;
+    font-size: 30px;
     text-align: center;
 }
 

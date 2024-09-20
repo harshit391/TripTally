@@ -1,5 +1,13 @@
 const eleFunc = () =>
 {
+    const cookie = document.cookie.split(';')[0].split('=')[1];
+
+    const name = JSON.parse(localStorage.getItem('users')).find(user => user.id === parseInt(cookie)).username;
+
+    const welcome = document.querySelector(".welcome");
+
+    welcome.innerHTML = `Hi, ${name} !`;
+    
     const ttl = document.querySelector(".title");
     const ttl1 = document.querySelector(".title1");
     const ttl2 = document.querySelector(".title2");

@@ -1,4 +1,5 @@
 const lists = `<div class='lists'>
+    <h1 class='welcome'></h1>
     <h1 class='heading'> Welcome to Trip Tally </h1>
             <div class='list-titles'>
                 <div class='title1'>Going on Trip</div>
@@ -19,7 +20,7 @@ const lists = `<div class='lists'>
                     <form class='form-coming'>
                         <input type='text' class='input' placeholder='Coming from Trip Items'>
                         <button class='add-btn'>Add Item</button>
-                        <button class='clear-coming'>Clear</button>
+                        <button class='clear-coming'>Clear List</button>
                     </form>
                     <div class='coming-list'></div>
                 </div>
