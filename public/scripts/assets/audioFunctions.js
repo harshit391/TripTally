@@ -11,8 +11,10 @@ const audioFunction = () =>
     audio.volume = currVolumeByUser ? currVolumeByUser : 1;
 
     const durationByUser = database.duration;
+    const reminderByUser = database.reminder;
 
     let defaultDuration = durationByUser ? durationByUser : 10;
+    let defaultReminder = reminderByUser ? reminderByUser : 1;
 
     let currentTimeOut = null;
 
@@ -112,6 +114,39 @@ const audioFunction = () =>
         defaultDuration = value;
         duration.value = value;
         database.duration = value;
+        uploadDataBase();
+    });
+
+    const reminder = document.querySelector('.reminder-input');
+
+    reminder.value = reminderByUser;
+    uploadDataBase();
+
+    reminder.addEventListener('change', () => {
+        const value = reminder.value;
+
+        if (value <= 0)
+        {
+            defaultReminder = 1;
+            reminder.value = 1;
+            database.reminder = 1;
+            uploadDataBase();
+            alert('Interval Time Should be Greater Than 0 Minutes');
+            return;
+        }
+        else if (value > 60)
+        {
+            defaultReminder = 60;
+            reminder.value = 60;
+            database.reminder = 60;
+            uploadDataBase();
+            alert('Interval Time Should be Less Than 60 Minutes');
+            return;
+        }
+        
+        defaultReminder = value;
+        reminder.value = value;
+        database.reminder = value;
         uploadDataBase();
     });
 }

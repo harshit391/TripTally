@@ -96,7 +96,12 @@ const volumeControl = `
         <div class='duration'>
             <div class='testpara'>Set the Duration in Seconds You want the Song to be Played</div>
             <div class='testpara'>By Default its 10 Seconds</div>
-            <input type='number' class='duration-input' placeholder='Duration in Seconds' min='1' max='120'>
+            <input type='number' class='duration-input' placeholder='Duration in Seconds' min='1' max='59'>
+        </div>
+        <div class='reminder'>
+            <div class='testpara'>Set the Interval Time in Minutes for Reminder</div>
+            <div class='testpara'>By Default its 1 Minute</div>
+            <input type='number' class='reminder-input' placeholder='Reminder in Minutes' min='1' max='60'>
         </div>
     </div>
 `

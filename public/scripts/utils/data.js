@@ -18,6 +18,7 @@ class UserData
         this.comingList = [];
         this.duration = 10;
         this.volume = 0.1;
+        this.reminder = 1;
         this.defaultlist = "going";
     }
 }

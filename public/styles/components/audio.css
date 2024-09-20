@@ -30,6 +30,13 @@
     cursor: default;
 }
 
+.reminder > .testpara:hover {
+    background-color: initial;
+    color: white;
+    font-weight: normal;
+    cursor: default;
+}
+
 .testpara:hover {
     background-color: #BAB700;
     color: black;
@@ -82,15 +89,16 @@
     font-size: 30px;
 }
 
-.duration
+.duration, .reminder
 {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin: 20px;
 }
 
-.duration-input
+.duration-input, .reminder-input
 {
     padding: 10px;
     width: 100px;

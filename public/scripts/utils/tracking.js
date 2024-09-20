@@ -1,4 +1,4 @@
-var reminderTime = 10; // 10 minutes before event
+var reminderTime = 10;
 var currentInterval = null;
 var reminderTriggered = false;
 var audio = null;
@@ -7,7 +7,7 @@ const loadTracker = () =>
 {
     getDataBase();
 
-    // reminderTime = database.reminderTime ? database.reminderTime : 10;
+    reminderTime = database.reminderTime ? database.reminderTime : 10;
 
     const startTrackerButton = document.querySelector('.tracking');
 
