@@ -25,6 +25,8 @@ const load = () =>
 
     eleFunc();
 
+    loadTracker();
+
     const goingForm = document.querySelector('.form-going');
     const comingForm = document.querySelector('.form-coming');
     
