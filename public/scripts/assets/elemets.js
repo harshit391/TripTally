@@ -78,7 +78,7 @@ const startButtons = `
 const testBtn = `
     <div class='test-controls'>
         <button class='test'>Test</button>
-        <p class='testpara' style='padding: 20px;'>Its actually My Favourite Song - Jhol</p>
+        <p class='testpara'>Its actually My Favourite Song - Jhol</p>
     </div>
 `
 
@@ -108,13 +108,15 @@ const durationControl = `
     <div class='user-input'>
         <div class='duration'>
             <input type='number' class='duration-input' placeholder='Duration in Seconds' min='1' max='59'>
-            <div class='testpara'>Set the Duration in Seconds You want the Song to be Played</div>
+            <div class='testpara'>Set the Duration in Seconds For the Song You want to be Played</div>
             <div class='testpara'>By Default its 10 Seconds</div>
+            <div class='testpara'>Maximum 59 Seconds</div>
         </div>
         <div class='reminder'>
             <input type='number' class='reminder-input' placeholder='Reminder in Minutes' min='1' max='60'>
-            <div class='testpara'>Set the Interval Time in Minutes for Reminder of any of Items Left</div>
+            <div class='testpara'>Set the Interval Time in Minutes for Reminder of Left Items</div>
             <div class='testpara'>By Default its 1 Minute</div>
+            <div class='testpara'>Maximum 60 Minutes</div>
         </div>
     </div>
 `

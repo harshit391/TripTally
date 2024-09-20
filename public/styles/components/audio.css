@@ -24,17 +24,30 @@
     background-color: red;
 }
 
+.head-controls
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.head-controls div
+{
+    width: 100%;
+}
+
 .test-controls
 {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
 .testpara
 {
-    margin: 15px;
+    padding: 15px;
     cursor: pointer;
     text-align: center;
     border-radius: 5px;
@@ -97,7 +110,8 @@
     color: black;
     border-radius: 5px;
     font-weight: bold;
-    font-size: 26px;
+    text-align: center;
+    font-size: 20px;
 }
 
 .volume-value
@@ -113,7 +127,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin: 20px;
+    margin: 20px; 
 }
 
 .duration-input, .reminder-input
