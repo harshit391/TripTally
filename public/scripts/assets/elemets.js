@@ -1,12 +1,17 @@
 const lists = `<div class='lists'>
-    <h1 class='welcome'></h1>
-    <h1 class='heading'> Welcome to Trip Tally </h1>
+        <div>
+            <h1 class='welcome'></h1>
+            <h1 class='heading'> Welcome to Trip Tally </h1>
+            <p class='mypara'>A Simple Way to Keep Track of Items You Need to Take on a Trip and Items You Need to Bring Back</p>
+            <p class='mypara'>Just Add the Items You Need to Take on a Trip and the Items You Need to Bring Back</p>
             <div class='list-titles'>
                 <div class='title1'>Going on Trip</div>
                 <div class='title2'>Coming from Trip</div>
             </div>
             <div class='title'></div>
             <div class='tracking'>Start Tracking</div>
+        </div>
+        <div>
             <div class='main-container'>
                 <div class='form-container'>
                     <form class='form-going'>
@@ -25,6 +30,7 @@ const lists = `<div class='lists'>
                     <div class='coming-list'></div>
                 </div>
             </div>
+        </div>
         </div>`
 
 const locationHome = `<div class='location'>
@@ -70,14 +76,16 @@ const startButtons = `
 `
 
 const testBtn = `
-    <button class='test'>Test</button>
-    <p class='testpara' style='padding: 20px;'>Its actually My Favourite Song - Jhol</p>
+    <div class='test-controls'>
+        <button class='test'>Test</button>
+        <p class='testpara' style='padding: 20px;'>Its actually My Favourite Song - Jhol</p>
+    </div>
 `
 
 const profile = `
     <div class='nav'>
         <a href='/pages/configure-audio.html' class='profile'>
-            <div class='config-audio'>Configure Audio</div>
+            <div class='config-audio'>Configure Audio System</div>
         </a>
         <a href='/pages/user.html' class='profile'>
             <div class='profile-state'>Login / SignUp</div>
@@ -93,15 +101,22 @@ const volumeControl = `
             <div class='minus'>-</div>
         </div>
         <div class='volume-value'></div>
+    </div>
+`
+
+const durationControl = `
+    <div class='user-input'>
         <div class='duration'>
+            <input type='number' class='duration-input' placeholder='Duration in Seconds' min='1' max='59'>
             <div class='testpara'>Set the Duration in Seconds You want the Song to be Played</div>
             <div class='testpara'>By Default its 10 Seconds</div>
-            <input type='number' class='duration-input' placeholder='Duration in Seconds' min='1' max='59'>
         </div>
         <div class='reminder'>
-            <div class='testpara'>Set the Interval Time in Minutes for Reminder</div>
-            <div class='testpara'>By Default its 1 Minute</div>
             <input type='number' class='reminder-input' placeholder='Reminder in Minutes' min='1' max='60'>
+            <div class='testpara'>Set the Interval Time in Minutes for Reminder of any of Items Left</div>
+            <div class='testpara'>By Default its 1 Minute</div>
         </div>
     </div>
 `
+
+

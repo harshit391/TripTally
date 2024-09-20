@@ -12,6 +12,11 @@ html
     scroll-behavior: smooth;
 }
 
+html::-webkit-scrollbar
+{
+    display: none;
+}
+
 body
 {
     display: flex;
@@ -20,6 +25,11 @@ body
     gap: 25px;
     background-color: #211e1e;
     color: #ffffff;
+}
+
+.mypara
+{
+    text-align: center;
 }
 
 .selected

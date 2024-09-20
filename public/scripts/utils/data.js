@@ -112,6 +112,13 @@ const addItems = (e) =>
 
 const clearList = (e) =>
 {
+    const confirmation = confirm('Are you sure you want to clear the list?');
+
+    if (!confirmation)
+    {
+        return;
+    }
+
     e.preventDefault();
 
     const parent = e.target.parentElement;

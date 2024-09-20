@@ -101,13 +101,13 @@ const audioFunction = () =>
             alert('Duration should be greater than 0');
             return;
         }
-        else if (value > 60)
+        else if (value >= 60)
         {
-            defaultDuration = 60;
-            duration.value = 60;
-            database.duration = 60;
+            defaultDuration = 59;
+            duration.value = 59;
+            database.duration = 59;
             uploadDataBase();
-            alert('Duration should be less than 60');
+            alert('Duration should not be greater than 59');
             return;
         }
         
@@ -140,7 +140,7 @@ const audioFunction = () =>
             reminder.value = 60;
             database.reminder = 60;
             uploadDataBase();
-            alert('Interval Time Should be Less Than 60 Minutes');
+            alert('Interval Time Should not be Greater Than 60 Minutes');
             return;
         }
         

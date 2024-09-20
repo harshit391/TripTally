@@ -4,6 +4,15 @@
     flex-direction: column;
 }
 
+.config
+{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
 .test
 {
     all: unset;
@@ -13,6 +22,14 @@
     border-radius: 5px;
     cursor: pointer;
     background-color: red;
+}
+
+.test-controls
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .testpara
@@ -51,6 +68,7 @@
     gap: 10px;
     padding: 15px;
     height: 10px;
+    margin: 10px;
 }
 
 .sub-control
@@ -106,3 +124,22 @@
     font-weight: 600;
     font-size: 15px;
 }   
+
+.user-input
+{
+    display: flex;
+    align-items: flex-start;
+}
+
+.user-input div
+{
+    font-size: 20px;
+    width: 100%;
+}
+
+@media screen and (min-width: 600px) {
+    .config{
+        flex-direction: row;
+        justify-content: center;
+    }
+}

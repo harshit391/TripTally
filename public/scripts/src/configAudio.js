@@ -8,6 +8,7 @@ const loadConfigAudio = () =>
         <h1 style='padding: 20px; text-align: center;'>Configure Your Audio</h1>
         ${testBtn}
         ${volumeControl}
+        ${durationControl}
 
     `
 

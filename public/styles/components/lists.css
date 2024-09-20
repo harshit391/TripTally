@@ -8,6 +8,16 @@
     gap: 40px;
     align-items: center;
     width: 100%;
+    margin-top: 20px;
+}
+
+.lists > div
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 
 .welcome
@@ -201,7 +211,24 @@
 
     .lists
     {
-        width: 60%;
+        margin: 0;
+        justify-content: center;
+        flex-direction: row;
+    }
+
+    .lists div
+    {
+        width: 100%;
+    }
+
+    .lists > div
+    {
+        gap: 20px;
+        text-align: center;
+        padding: 50px;
+        align-items: center;
+        justify-content: space-between;
+        height: 80vh;
     }
 
     .form-container form input[type="text"]
