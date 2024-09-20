@@ -1,4 +1,4 @@
-var reminderTime = 10;
+var reminderTime = 1;
 var currentInterval = null;
 var reminderTriggered = false;
 var audio = null;
@@ -7,7 +7,9 @@ const loadTracker = () =>
 {
     getDataBase();
 
-    reminderTime = database.reminderTime ? database.reminderTime : 10;
+    reminderTime = database.reminderTime ? database.reminderTime : 1;
+
+    console.log(reminderTime);
 
     const startTrackerButton = document.querySelector('.tracking');
 
@@ -58,7 +60,7 @@ const startTracking = (list) =>
         currentInterval = setInterval(() => {
             console.log("Coming Interval");
             trackList(comingList);
-        }, 15000);
+        }, (reminderTime * 1000 * 60));
     }
 
     else
@@ -67,7 +69,7 @@ const startTracking = (list) =>
         currentInterval = setInterval(() => {
             console.log("Going Interval");
             trackList(goingList);
-        }, 15000);
+        }, (reminderTime * 1000 * 60));
     }
 }
 
