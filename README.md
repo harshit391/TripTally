@@ -20,8 +20,7 @@ A sleek app to manage and track your travel essentials. Organize your packing li
 #### Key Feaures
 
 * **Items List with Storage :-** Seperate Lists for Home and Trip Storing everything.
-- **Live Location Tracking  :-** Accuracte Location Tracking with Range
-* **Alert using Mobile Vibration :-** If User forgot to Add Item Mentioned in the list, Mobile will start Vibrating that Something is left.
+* **Alert System:-** If User forgot to Add Item Mentioned in the list, A Music will be Played as an Alarm.
 - **User Interface :-** A User Friendly Interface with an Abstraction Layer so that User can easily maintain their List 
 
 ---
@@ -39,13 +38,11 @@ A sleek app to manage and track your travel essentials. Organize your packing li
 - Javascript
 - Node and Express (Just for Live Server Purposes)
 
-###### Javascipt Libraries Used
-- Geolocation
-
 ---
 
 #### Data Base
 - Local Web Storage
+- Cookies
 
 ---
 
@@ -80,7 +77,7 @@ http://localhost:3000
 #### Future Scope
 - Improved User Interface
 - Cloud Database for Both Desktop and Mobile Support :- User can add on Desktop and can access the same on Mobile
-- Location Accuracy Improvements
+- Location Tracking System
 - List Suggestions According to Destination
 - Proper GPS Map Telling User this is the place Left To Visit
 
