@@ -86,36 +86,80 @@ const audioFunction = () =>
 
     currvolume.addEventListener('change', handleVolumeChange);
 
-    const duration = document.querySelector('.duration-input');
+    const duration = document.querySelectorAll('.duration-input');
 
-    duration.value = durationByUser;
+    const minute = duration[0];
+    const second = duration[1];
+
+    minute.value = Math.floor(defaultDuration/60);
+    second.value = defaultDuration%60;
     uploadDataBase();
 
-    duration.addEventListener('change', () => {
-        const value = duration.value;
+    minute.addEventListener('change', () => {
+        const value = minute.value;
 
-        if (value <= 0)
+        if (value < 0)
         {
-            defaultDuration = 1;
-            duration.value = 1;
-            database.duration = 1;
+            defaultDuration = Number(second.value);
+            minute.value = 0;
+            database.duration = Number(second.value);
             uploadDataBase();
-            alert('Duration should be greater than 0');
+            alert('Duration Should not be Less Than 0');
             return;
         }
-        else if (value >= database.reminder)
+
+        if (value * 60 + Number(second.value) >= database.reminder)
         {
             defaultDuration = database.reminder - 1;
-            duration.value = database.reminder - 1;
+            minute.value = database.reminder - 1;
             database.duration = database.reminder - 1;
             uploadDataBase();
-            alert('Duration should be less than the Reminder Time');
+            alert('Duration Should be Less Than Reminder Time');
             return;
         }
-        
-        defaultDuration = value;
-        duration.value = value;
-        database.duration = value;
+
+        defaultDuration = value * 60 + Number(second.value);
+        minute.value = value;
+        database.duration = value * 60 + Number(second.value);
+        uploadDataBase();
+    });
+
+    second.addEventListener('change', () => {
+        const value = Number(second.value);
+
+        console.log(value);
+
+        if (value < 0)
+        {
+            defaultDuration = Number(minute.value) * 60;
+            second.value = 0;
+            database.duration = Number(minute.value) * 60;
+            uploadDataBase();
+            alert('Duration Should not be Less Than 0');
+            return;
+        }
+        if (value >= 60)
+        {
+            defaultDuration = 59 + Number(minute.value) * 60;
+            second.value = 59;
+            database.duration = 59 + Number(minute.value) * 60;
+            uploadDataBase();
+            alert('Duration Should not be Greater Than 59 Seconds');
+            return;
+        }
+        if (value + Number(minute.value) * 60 >= database.reminder)
+        {
+            defaultDuration = database.reminder - 1;
+            second.value = database.reminder - 1;
+            database.duration = database.reminder - 1;
+            uploadDataBase();
+            alert('Duration Should be Less Than Reminder Time');
+            return;
+        }
+
+        defaultDuration = value + Number(minute.value) * 60;
+        second.value = value;
+        database.duration = value + Number(minute.value) * 60;
         uploadDataBase();
     });
 
@@ -139,6 +183,16 @@ const audioFunction = () =>
             database.reminder = Number(second_input.value);
             uploadDataBase();
             alert('Interval Time Should not be Less Than 0');
+            return;
+        }
+
+        if (value <= database.duration)
+        {
+            defaultReminder = Number(second_input.value) + 1;
+            minute_input.value = database.duration + 1;
+            database.reminder = Number(second_input.value) + 1;
+            uploadDataBase();
+            alert('Reminder Time Should be Greater Than Duration');
             return;
         }
         

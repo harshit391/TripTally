@@ -152,12 +152,21 @@
     font-size: 15px;
 }
 
-.reminder-input-btns
+.reminder-input-btns, .duration-input-btns
 {
     display: flex;
     justify-content: center;
     gap: 20px;
     align-items: center;
+}
+
+.testpara2
+{
+    cursor: pointer;
+    text-align: center;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
 }
 
 @media screen and (min-width: 600px) {

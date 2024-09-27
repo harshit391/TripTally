@@ -49,3 +49,60 @@
     justify-content: center;
     gap: 20px;
 }
+
+.guide-cont
+{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+.guide-cont h2
+{
+    text-decoration: underline;
+}
+
+.guide
+{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.sub-guide
+{
+    display: flex;
+    gap: 1.25rem;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px 0 rgba(255, 255, 255, 0.5);
+}
+
+.color
+{
+    width: 20px;
+    height: 20px;
+    border-radius: 2.5px;
+}
+
+.color1
+{
+    background-color: #BAB700;
+}
+
+.color2
+{
+    background-color: red;
+}
+
+@media screen and (max-width: 600px) 
+{
+
+}

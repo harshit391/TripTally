@@ -7,6 +7,7 @@ const load = () =>
     body.innerHTML = `
         <div class='cont1'>
             ${profile}
+            ${guide}
             ${lists}
         </div>
     `;

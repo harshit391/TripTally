@@ -78,7 +78,7 @@ const startButtons = `
 const testBtn = `
     <div class='test-controls'>
         <button class='test'>Test</button>
-        <p class='testpara'>Its actually My Favourite Song - Jhol</p>
+        <p class='testpara testpara2'>Its actually My Favourite Song - Jhol</p>
     </div>
 `
 
@@ -98,6 +98,24 @@ const profile = `
     </div>
 `
 
+const guide = `
+    <div class='guide-cont'>
+        <h2>Color Scheme</h2>
+        <div class='guide'>
+            <div class='sub-guide'>
+                <div class='color color1'></div>
+                <div> => </div>
+                <div>Selected</div>
+            </div>
+            <div class='sub-guide'>
+                <div class='color color2'></div>
+                <div> => </div>
+                <div>Not Selected</div>
+            </div>
+        </div>
+    </div>
+`
+
 const volumeControl = `
     <div class='control-volume'>
         <input type='range' class='volume' min='0' max='1' step='0.01'>
@@ -113,9 +131,13 @@ const durationControl = `
     <div class='user-input'>
         <div class='duration'>
             <h2>Duration</h2>
-            <input type='number' class='duration-input' placeholder='Duration in Seconds' min='1'>
+            <div class='duration-input-btns'>
+                <input type='number' class='duration-input' placeholder='Duration in Minutes' min='0'>
+                <p>Minutes</p>
+                <input type='number' class='duration-input' placeholder='Duration in Seconds' min='0' max='59'>
+                <p>Seconds</p>
+            </div>
             <div class='testpara'>Set the Duration in Seconds For the Song You want to be Played</div>
-            <div class='testpara'>By Default its 10 Seconds</div>
         </div>
         <div class='reminder'>
             <h2>Reminder</h2>
@@ -126,7 +148,6 @@ const durationControl = `
                 <p>Seconds</p>
             </div>
             <div class='testpara'>Set the Interval Time in Minutes for Reminder of Left Items</div>
-            <div class='testpara'>By Default its 1 Minute</div>
         </div>
     </div>
 `
