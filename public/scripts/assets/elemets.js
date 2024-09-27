@@ -84,10 +84,15 @@ const testBtn = `
 
 const profile = `
     <div class='nav'>
-        <a href='/pages/configure-audio.html' class='profile'>
-            <div class='config-audio'>Configure Audio System</div>
+        <a href=/index.html class='nav-item'>
+            <div class='home'>Home</div>
         </a>
-        <a href='/pages/user.html' class='profile'>
+        <div class='nav-items-between'>
+            <a href='/pages/configure-audio.html' class='profile'>
+                <div class='config-audio'>Configure Audio</div>
+            </a>
+        </div>
+        <a href='/pages/user.html' class='nav-item'>
             <div class='profile-state'>Login / SignUp</div>
         </a>
     </div>
@@ -107,16 +112,21 @@ const volumeControl = `
 const durationControl = `
     <div class='user-input'>
         <div class='duration'>
-            <input type='number' class='duration-input' placeholder='Duration in Seconds' min='1' max='59'>
+            <h2>Duration</h2>
+            <input type='number' class='duration-input' placeholder='Duration in Seconds' min='1'>
             <div class='testpara'>Set the Duration in Seconds For the Song You want to be Played</div>
             <div class='testpara'>By Default its 10 Seconds</div>
-            <div class='testpara'>Maximum 59 Seconds</div>
         </div>
         <div class='reminder'>
-            <input type='number' class='reminder-input' placeholder='Reminder in Minutes' min='1' max='60'>
+            <h2>Reminder</h2>
+            <div class='reminder-input-btns'>
+                <input type='number' class='reminder-input' placeholder='Reminder in Minutes' min='0'>
+                <p>Minutes</p>
+                <input type='number' class='reminder-input' placeholder='Reminder in Seconds' min='0' max='59'>
+                <p>Seconds</p>
+            </div>
             <div class='testpara'>Set the Interval Time in Minutes for Reminder of Left Items</div>
             <div class='testpara'>By Default its 1 Minute</div>
-            <div class='testpara'>Maximum 60 Minutes</div>
         </div>
     </div>
 `

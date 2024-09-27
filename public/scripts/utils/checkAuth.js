@@ -1,6 +1,6 @@
 const checkAuthState = () =>
 {
-    const profileCover = document.querySelectorAll(".profile")[1];
+    const profileCover = document.querySelectorAll(".nav-item")[1];
     const profile = document.querySelector(".profile-state");
 
     const cookie = document.cookie;

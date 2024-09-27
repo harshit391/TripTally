@@ -19,8 +19,33 @@
 {
     display: flex;
     justify-content: space-between;
+    gap: 20px;
     width: 100%;
     padding: 10px;
     color: white;
     font-weight: 600;
+}
+
+.nav-item
+{
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #bde0fe;
+    text-decoration: none;
+    color: black;
+}
+
+.nav-item:hover
+{
+    background-color: #BAB700;
+    color: black;
+    font-weight: 600;
+}
+
+.nav-items-between
+{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }

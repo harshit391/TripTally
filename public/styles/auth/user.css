@@ -84,6 +84,18 @@
     color: white;
 }
 
+.login-container a
+{
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+}
+
+.login-container a:hover
+{
+    text-decoration: underline;
+}
+
 @media screen and (min-width: 600px) 
 {
     

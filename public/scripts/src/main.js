@@ -3,16 +3,6 @@ const mainBody = document.querySelector("body");
 
 const load = () =>
 {
-    const theme = localStorage.getItem('theme');
-
-    if(theme)
-    {
-        mainBody.classList.add("dark");
-    }
-    else
-    {
-        mainBody.classList.remove("dark");
-    }
 
     body.innerHTML = `
         <div class='cont1'>

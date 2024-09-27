@@ -1,0 +1,19 @@
+
+
+
+.slide
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.tutoral-image
+{
+    width: 90%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid red;
+}

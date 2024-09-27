@@ -2,11 +2,13 @@
 {
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .config
 {
     display: flex;
+    width: 100%;
     text-align: center;
     flex-direction: column;
     align-items: center;
@@ -29,12 +31,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-}
-
-.head-controls div
-{
-    width: 100%;
 }
 
 .test-controls
@@ -47,7 +43,6 @@
 
 .testpara
 {
-    padding: 15px;
     cursor: pointer;
     text-align: center;
     border-radius: 5px;
@@ -125,15 +120,19 @@
 {
     display: flex;
     justify-content: center;
+    border-radius: 10px;
+    gap: 20px;
+    width: 100%;
     align-items: center;
+    padding: 10px;
     flex-direction: column;
-    margin: 20px; 
+    box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.5);
 }
 
 .duration-input, .reminder-input
 {
     padding: 10px;
-    width: 100px;
+    width: 50px;
     border-radius: 5px;
     font-weight: 600;
     font-size: 15px;
@@ -143,17 +142,46 @@
 {
     display: flex;
     align-items: flex-start;
+    gap: 20px;
+    padding: 10px;
+    flex-direction: column;
 }
 
 .user-input div
 {
-    font-size: 20px;
-    width: 100%;
+    font-size: 15px;
+}
+
+.reminder-input-btns
+{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
 }
 
 @media screen and (min-width: 600px) {
-    .config{
+    .config
+    {
         flex-direction: row;
         justify-content: center;
+        width: 100%;
+    }
+
+    .config-audio div
+    {
+        width: 100%;
+    }
+
+    .user-input
+    {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .duration-input, .reminder-input
+    {
+        width: 100px;
     }
 }

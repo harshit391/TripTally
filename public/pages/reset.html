@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="/icon.png" type="image/x-icon">
+
+    <!-- Loading the Main Css first -->
+    <link rel="stylesheet" href="/styles/main/styles.css">
+
+    <!-- Loading the Components Css -->
+    <link rel="stylesheet" href="/styles/components/reset.css">
+    
+    <title>Reset Password</title>
+</head>
+<body>
+    <div class="profile" style="margin-top: 20px;">
+        <a href="/index.html">Go Back</a>
+    </div>
+
+    
+    <div class="container">
+        
+        <h1>
+            Reset Pass
+        </h1>
+
+        <div class="l-s-container">
+            
+            <div class="login-container">
+                <label for="email-reset">Email</label>
+                <input type="email" name="email-reset" id="email-reset" placeholder="Email">
+
+                <label for="password-reset">Password</label>
+                <input type="password" name="password-reset" id="password-reset" placeholder="Password">
+
+                <button id="reset-btn">
+                    Reset
+                </button>
+            </div>
+
+            <div id="errwin" class="error-window"></div>
+
+        </div>
+    </div>
+    <!-- Loading The Check Auth Scripts -->
+    <script src="/scripts/utils/checkAuth.js"></script>
+
+    <!-- Loading the Data Base -->
+    <script defer src="/scripts/utils/data.js"></script>
+
+    <!-- Loading the Reset -->
+    <script defer src="/scripts/auth/reset.js"></script>
+</body>
+</html>

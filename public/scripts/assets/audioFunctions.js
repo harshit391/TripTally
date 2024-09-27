@@ -11,10 +11,12 @@ const audioFunction = () =>
     audio.volume = currVolumeByUser ? currVolumeByUser : 1;
 
     const durationByUser = database.duration;
-    const reminderByUser = database.reminder;
+    const reminderByUser = Number(database.reminder);
 
     let defaultDuration = durationByUser ? durationByUser : 10;
-    let defaultReminder = reminderByUser ? reminderByUser : 1;
+    let defaultReminder = reminderByUser ? reminderByUser : 60;
+
+    console.log("Default Reminder ", defaultReminder);
 
     let currentTimeOut = null;
 
@@ -101,13 +103,13 @@ const audioFunction = () =>
             alert('Duration should be greater than 0');
             return;
         }
-        else if (value >= 60)
+        else if (value >= database.reminder)
         {
-            defaultDuration = 59;
-            duration.value = 59;
-            database.duration = 59;
+            defaultDuration = database.reminder - 1;
+            duration.value = database.reminder - 1;
+            database.duration = database.reminder - 1;
             uploadDataBase();
-            alert('Duration should not be greater than 59');
+            alert('Duration should be less than the Reminder Time');
             return;
         }
         
@@ -117,36 +119,63 @@ const audioFunction = () =>
         uploadDataBase();
     });
 
-    const reminder = document.querySelector('.reminder-input');
+    const reminder = document.querySelectorAll('.reminder-input');
 
-    reminder.value = reminderByUser;
+    const minute_input = reminder[0];
+    const second_input = reminder[1];
+
+    minute_input.value = Math.floor((reminderByUser/60));
+    second_input.value = reminderByUser%60;
     uploadDataBase();
 
-    reminder.addEventListener('change', () => {
-        const value = reminder.value;
+    minute_input.addEventListener('change', () => {
+        console.log("Minute Input");
+        const value = minute_input.value;
 
-        if (value <= 0)
+        if (value < 0)
         {
-            defaultReminder = 1;
-            reminder.value = 1;
-            database.reminder = 1;
+            defaultReminder = Number(second_input.value);
+            minute_input.value = 0;
+            database.reminder = Number(second_input.value);
             uploadDataBase();
-            alert('Interval Time Should be Greater Than 0 Minutes');
-            return;
-        }
-        else if (value > 60)
-        {
-            defaultReminder = 60;
-            reminder.value = 60;
-            database.reminder = 60;
-            uploadDataBase();
-            alert('Interval Time Should not be Greater Than 60 Minutes');
+            alert('Interval Time Should not be Less Than 0');
             return;
         }
         
-        defaultReminder = value;
-        reminder.value = value;
-        database.reminder = value;
+        defaultReminder = value * 60 + Number(second_input.value);
+        minute_input.value = value;
+        database.reminder = value * 60 + Number(second_input.value);
+        console.log(defaultReminder);
+        uploadDataBase();
+    });
+
+    second_input.addEventListener('change', () => {
+        console.log("Second Input");
+        const value = Number(second_input.value);
+
+        if (value < 0)
+        {
+            defaultReminder = Number(minute_input.value) * 60;
+            second_input.value = 0;
+            database.reminder = Number(minute_input.value) * 60;
+            uploadDataBase();
+            alert('Interval Time Should not be Less Than 0');
+            return;
+        }
+        if (value >= 60)
+        {
+            defaultReminder = 59 + Number(minute_input.value) * 60;
+            second_input.value = 59;
+            database.reminder = 59 + Number(minute_input.value) * 60;
+            uploadDataBase();
+            alert('Interval Time Should not be Greater Than 59 Seconds');
+            return;
+        }
+        
+        defaultReminder = value + Number(minute_input.value) * 60;
+        console.log(defaultReminder);
+        second_input.value = value;
+        database.reminder = value + Number(minute_input.value) * 60;
         uploadDataBase();
     });
 }

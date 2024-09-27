@@ -41,19 +41,20 @@ body
 
 .profile
 {
-    all: unset;
+    text-decoration: none;
     text-align: center;
     font-weight: 600;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    background-color: red;
+    background-color: #bde0fe;
+    color: black;
 }
 
 .profile a
 {
     text-decoration: none;
-    color: white;
+    color: black;
 }
 
 .profile:hover

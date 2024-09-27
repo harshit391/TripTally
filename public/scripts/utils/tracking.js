@@ -7,9 +7,9 @@ const loadTracker = () =>
 {
     getDataBase();
 
-    reminderTime = database.reminderTime ? database.reminderTime : 1;
+    reminderTime = database.reminder ? database.reminder : 60;
 
-    console.log(reminderTime);
+    console.log("Reminder Time " , reminderTime);
 
     const startTrackerButton = document.querySelector('.tracking');
 
@@ -60,7 +60,7 @@ const startTracking = (list) =>
         currentInterval = setInterval(() => {
             console.log("Coming Interval");
             trackList(comingList);
-        }, (reminderTime * 1000 * 60));
+        }, (reminderTime * 1000));
     }
 
     else
@@ -69,7 +69,7 @@ const startTracking = (list) =>
         currentInterval = setInterval(() => {
             console.log("Going Interval");
             trackList(goingList);
-        }, (reminderTime * 1000 * 60));
+        }, (reminderTime * 1000));
     }
 }
 
