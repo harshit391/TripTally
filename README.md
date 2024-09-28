@@ -1,5 +1,5 @@
 # TripTally
-A sleek app to manage and track your travel essentials. Organize your packing lists, set reminders for must-buy items, and get real-time notifications if you forget anything while on the go.
+A sleek app to manage and track your travel essentials. Organize your packing lists, set reminders for must-buy items, and get alarms if you forget anything while on the go.
 
 ![Main](Readme/TripTally.jpg)
 
@@ -20,7 +20,8 @@ A sleek app to manage and track your travel essentials. Organize your packing li
 #### Key Feaures
 
 * **Items List with Storage :-** Seperate Lists for Home and Trip Storing everything.
-* **Alert System:-** If User forgot to Add Item Mentioned in the list, A Music will be Played as an Alarm.
+- **Alert System:-** If User forgot to Add Item Mentioned in the list, A Music will be Played as an Alarm.
+* **User Auth:-** User can Sign Up and Login to Store their List.
 - **User Interface :-** A User Friendly Interface with an Abstraction Layer so that User can easily maintain their List 
 
 ---
