@@ -3,7 +3,7 @@ const error_window = document.querySelector('.error-window');
 const login_btn = document.querySelector('#login');
 const signup_btn = document.querySelector('#signup');
 
-const login = (email, password) =>
+const login = async (email, password) =>
 {
     const usersDB = localStorage.getItem('users');
 
@@ -13,25 +13,36 @@ const login = (email, password) =>
         error_window.innerHTML = 'User does not exist';
         return;
     }
-    else
-    {
-        const exists = JSON.parse(usersDB).find(user => user.email === email && user.password === password);
 
-        if (!exists)
-        {
-            document.getElementById("errwin").scrollIntoView();
-            error_window.innerHTML = 'Invalid User Name or Password';
-            return;
-        }
-        else
-        {
-            document.cookie = `token=${exists.id};path=/`;
-            window.location.href = '/index.html';
+    const users = JSON.parse(usersDB);
+    const hashedPassword = await hashString(password);
+
+    // Match against hashed password
+    let user = users.find(u => u.email === email && u.password === hashedPassword);
+
+    // Migration: if no match, try plain-text and upgrade to hashed
+    if (!user) {
+        const legacyUser = users.find(u => u.email === email && u.password === password);
+        if (legacyUser) {
+            legacyUser.password = hashedPassword;
+            localStorage.setItem('users', JSON.stringify(users));
+            user = legacyUser;
         }
     }
+
+    if (!user)
+    {
+        document.getElementById("errwin").scrollIntoView();
+        error_window.innerHTML = 'Invalid User Name or Password';
+        return;
+    }
+
+    error_window.innerHTML = '';
+    createSession(user.id);
+    window.location.href = '/index.html';
 }
 
-const signup = (username, password, email) =>
+const signup = async (username, password, email) =>
 {
     const usersDB = localStorage.getItem('users');
 
@@ -49,53 +60,39 @@ const signup = (username, password, email) =>
         }
 
         users = JSON.parse(usersDB);
-    }   
+    }
 
     error_window.innerHTML = '';
 
-    const curruser = new User(username, password, email);
+    const hashedPassword = await hashString(password);
+    const curruser = new User(username, hashedPassword, email);
 
     users.push(curruser);
 
     localStorage.setItem('users', JSON.stringify(users));
 
-    document.cookie = `token=${curruser.id};path=/`;
+    createSession(curruser.id);
     window.location.href = '/index.html';
 }
 
-login_btn.addEventListener('click', () => {
+login_btn.addEventListener('click', async () => {
 
     error_window.innerHTML = '';
 
     const email = document.querySelector(".login-container #email-login");
-
     const password = document.querySelector(".login-container #password-login");
 
-    const usersDB = localStorage.getItem('users');
-
-    if (usersDB === null)
+    if (email.value === '' || password.value === '')
     {
         document.getElementById("errwin").scrollIntoView();
-        error_window.innerHTML = 'User does not exist';
+        error_window.innerHTML = 'Please fill all fields';
         return;
     }
-    else
-    {
-        const user = JSON.parse(usersDB).find(user => user.email === email.value && user.password === password.value);
 
-        if (!user)
-        {
-            document.getElementById("errwin").scrollIntoView();
-            error_window.innerHTML = 'Invalid User Name or Password';
-            return;
-        }
-    }
-
-    error_window.innerHTML = '';
-    login(email.value, password.value);
+    await login(email.value, password.value);
 });
 
-signup_btn.addEventListener('click', () => {
+signup_btn.addEventListener('click', async () => {
 
     const name = document.querySelector(".signup-container #name");
 
@@ -117,12 +114,14 @@ signup_btn.addEventListener('click', () => {
         error_window.innerHTML = 'Invalid email';
         return;
     }
-    else
+    else if (password.value.length < 6)
     {
-        error_window.innerHTML = '';
+        document.getElementById("errwin").scrollIntoView();
+        error_window.innerHTML = 'Password must be at least 6 characters';
+        return;
     }
 
-    signup(name.value, password.value, email.value);
+    await signup(name.value, password.value, email.value);
 });
 
 const login_button = document.querySelector('.login-button');

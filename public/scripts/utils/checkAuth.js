@@ -3,12 +3,10 @@ const checkAuthState = () =>
     const profileCover = document.querySelectorAll(".nav-item")[1];
     const profile = document.querySelector(".profile-state");
 
-    const cookie = document.cookie;
-
     profile.addEventListener('click', () => {
         if (profile.innerHTML === 'Logout')
         {
-            document.cookie = `token=;path=/;`;
+            clearSession();
             window.location.href = '/index.html';
         }
         else
@@ -17,34 +15,33 @@ const checkAuthState = () =>
         }
     });
 
-    if (cookie !== null && cookie !== undefined && cookie !== '')
+    const userId = getSessionUserId();
+
+    if (userId !== null)
     {
-        const token = cookie.split(';').find(cookie => cookie.includes('token')).split('=')[1];
+        const userDB = localStorage.getItem('users');
 
-        if (token !== null && token !== undefined && token !== '') 
+        if (userDB !== null)
         {
-            const userDB = localStorage.getItem('users');
+            const user = JSON.parse(userDB).find(user => user.id === userId);
 
-            if (userDB !== null)
+            if (user !== undefined && user !== null)
             {
-                const user = JSON.parse(userDB).find(user => user.id === parseInt(token));
-
-                if (user !== undefined || user !== null)
-                {
-                    loadDataBase();
-                    profileCover.href = '/index.html';
-                    profile.innerHTML = 'Logout';
-                }
-                else
-                {
-                    window.location.href = '/pages/user.html';
-                    profileCover.href = '/pages/user.html';
-                    profile.innerHTML = 'Login / SignUp';
-                }
-            }   
+                loadDataBase();
+                profileCover.href = '/index.html';
+                profile.innerHTML = 'Logout';
+            }
+            else
+            {
+                clearSession();
+                window.location.href = '/pages/user.html';
+                profileCover.href = '/pages/user.html';
+                profile.innerHTML = 'Login / SignUp';
+            }
         }
         else
         {
+            clearSession();
             window.location.href = '/pages/user.html';
             profileCover.href = '/pages/user.html';
             profile.innerHTML = 'Login / SignUp';
@@ -56,39 +53,34 @@ const checkAuthState = () =>
         profileCover.href = '/pages/user.html';
         profile.innerHTML = 'Login / SignUp';
     }
-    
+
 }
 
 const checkAuth = () => {
 
-    const cookie = document.cookie;
+    const userId = getSessionUserId();
 
-    if (cookie !== null && cookie !== undefined && cookie !== '')
+    if (userId !== null)
     {
-        const token = cookie.split(';').find(cookie => cookie.includes('token')).split('=')[1];
+        const userDB = localStorage.getItem('users');
 
-        if (token !== null && token !== undefined && token !== '') 
+        if (userDB !== null)
         {
-            const userDB = localStorage.getItem('users');
+            const user = JSON.parse(userDB).find(user => user.id === userId);
 
-            if (userDB !== null)
+            if (user !== undefined && user !== null)
             {
-                const user = JSON.parse(userDB).find(user => user.id === parseInt(token));
-
-                if (user !== undefined || user !== null)
-                {
-                    alert("Already Logged In");
-                    loadDataBase();
-                    window.location.href = '/index.html';
-                    return;
-                }
-                else
-                {
-                    alert("Invalid Token. Please login again.");    
-                    window.location.href = '/login.html';
-                    return;
-                }
-            }   
+                alert("Already Logged In");
+                window.location.href = '/index.html';
+                return;
+            }
+            else
+            {
+                clearSession();
+                alert("Invalid Token. Please login again.");
+                window.location.href = '/pages/user.html';
+                return;
+            }
         }
     }
 }

@@ -2,7 +2,7 @@ const checkMail = (email) =>
 {
     const users = JSON.parse(localStorage.getItem('users'));
 
-    if (users.length > 0)
+    if (users && users.length > 0)
     {
         return users.find(user => user.email === email);
     }
@@ -10,21 +10,24 @@ const checkMail = (email) =>
     return null;
 }
 
-const resetPassword = (email, password) => 
+const resetPassword = async (email, password) =>
 {
     const user = checkMail(email);
 
     if (!user)
     {
+        document.querySelector("#errwin").innerHTML = 'User not found';
         return;
     }
 
     const users = JSON.parse(localStorage.getItem('users'));
 
+    const hashedPassword = await hashString(password);
+
     users.forEach((ele) => {
         if (ele.email === email)
         {
-            ele.password = password;
+            ele.password = hashedPassword;
         }
     });
 
@@ -33,7 +36,7 @@ const resetPassword = (email, password) =>
     alert('Password Reset Successful');
 }
 
-const resetPass = () =>
+const resetPass = async () =>
 {
     const email = document.querySelector("#email-reset");
     const password = document.querySelector("#password-reset");
@@ -54,7 +57,13 @@ const resetPass = () =>
         return;
     }
 
-    resetPassword(email.value, password.value);
+    if (password.value.length < 6)
+    {
+        error_window.innerHTML = 'Password must be at least 6 characters';
+        return;
+    }
+
+    await resetPassword(email.value, password.value);
 }
 
 document.addEventListener('DOMContentLoaded', () => {

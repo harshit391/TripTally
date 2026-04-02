@@ -26,7 +26,7 @@ class UserData
 var goingListFromStorage = null;
 var comingListFromStorage = null;
 
-const token = Number(document.cookie.split(';')[0].split('=')[1]);
+const token = getSessionUserId();
 
 var storage = [];
 var database = null;
