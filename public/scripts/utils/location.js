@@ -18,9 +18,9 @@ const locationFunctions = () =>
         tripCords.innerHTML = "Location Removed";
     }); 
 
-    const getLocation = (type) => 
-    {   
-        navigator.geolocation.getCurrentPosition((position) => 
+    const getLocation = (type) =>
+    {
+        navigator.geolocation.getCurrentPosition((position) =>
         {
             const lat = position.coords.latitude;
             const lon = position.coords.longitude;
@@ -32,19 +32,21 @@ const locationFunctions = () =>
                 const homeCords = document.querySelector(".home-cords");
                 homeCords.innerHTML = `Latitude :- ${lat} <br> Longitude :- ${lon}`;
             }
-    
+
             else
             {
                 const tripCords = document.querySelector(".trip-cords");
                 tripCords.innerHTML = `Latitude :- ${lat} <br> Longitude :- ${lon}`;
             }
+        }, (error) => {
+            alert(`Unable to get location: ${error.message}`);
         });
     }
 
     const addPositions = () =>
     {
-        const positionHome = JSON.parse(localStorage.getItem("Home"));
-        const positionTrip = JSON.parse(localStorage.getItem("Trip"));
+        const positionHome = safeParseJSON(localStorage.getItem("Home"));
+        const positionTrip = safeParseJSON(localStorage.getItem("Trip"));
 
         if(positionHome)
         {

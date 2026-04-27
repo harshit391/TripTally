@@ -23,7 +23,8 @@ const checkAuthState = () =>
 
         if (userDB !== null)
         {
-            const user = JSON.parse(userDB).find(user => user.id === userId);
+            const users = safeParseJSON(userDB);
+            const user = users ? users.find(user => user.id === userId) : null;
 
             if (user !== undefined && user !== null)
             {
@@ -66,20 +67,17 @@ const checkAuth = () => {
 
         if (userDB !== null)
         {
-            const user = JSON.parse(userDB).find(user => user.id === userId);
+            const users = safeParseJSON(userDB);
+            const user = users ? users.find(user => user.id === userId) : null;
 
             if (user !== undefined && user !== null)
             {
-                alert("Already Logged In");
                 window.location.href = '/index.html';
                 return;
             }
             else
             {
                 clearSession();
-                alert("Invalid Token. Please login again.");
-                window.location.href = '/pages/user.html';
-                return;
             }
         }
     }

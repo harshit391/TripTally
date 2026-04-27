@@ -7,32 +7,25 @@ const loadTracker = () =>
 {
     getDataBase();
 
-    reminderTime = database.reminder ? database.reminder : 60;
-
-    console.log("Reminder Time " , reminderTime);
+    reminderTime = database && database.reminder ? database.reminder : 60;
 
     const startTrackerButton = document.querySelector('.tracking');
 
     startTrackerButton.addEventListener('click', () => {
 
-        if (startTrackerButton.classList.contains("selected")) 
+        if (startTrackerButton.classList.contains("selected"))
         {
             const containers = document.querySelectorAll('.form-container');
 
             const listGoing = containers[0];
             const listComing = containers[1];
 
-            console.log(listGoing);
-            console.log(listComing);
-
             if (listGoing.style.display === 'flex')
             {
-                console.log("Going 1");
                 startTracking(false);
             }
             else if (listComing.style.display === 'flex')
             {
-                console.log("Coming 1");
                 startTracking(true);
             }
         }
@@ -54,20 +47,16 @@ const startTracking = (list) =>
         clearInterval(currentInterval);
     }
 
-    if (list) 
+    if (list)
     {
-        console.log("Coming");
         currentInterval = setInterval(() => {
-            console.log("Coming Interval");
             trackList(comingList);
         }, (reminderTime * 1000));
     }
 
     else
     {
-        console.log("Going");
         currentInterval = setInterval(() => {
-            console.log("Going Interval");
             trackList(goingList);
         }, (reminderTime * 1000));
     }
@@ -79,16 +68,17 @@ const playAudio = () =>
     audio.volume = database.volume;
 
     audio.play();
-    
+
     setTimeout(() => {
-        audio.pause();
+        if (audio) {
+            audio.pause();
+        }
         reminderTriggered = false;
     }, database.duration * 1000);
-}   
+}
 
 const trackList = (listName) =>
 {
-    console.log("Tracking", listName);
     var needsReminder = false;
 
     listName.forEach((item) => {
@@ -99,11 +89,8 @@ const trackList = (listName) =>
         }
     });
 
-    console.log(needsReminder);
-
     if (needsReminder && !reminderTriggered)
     {
-        console.log("Reminder");
         playAudio();
         reminderTriggered = true;
     }
@@ -115,7 +102,12 @@ const trackList = (listName) =>
 
 const stopTracking = () =>
 {
-    console.log("Stopping");
-    clearInterval(currentInterval);
-    audio.pause();
+    if (currentInterval) {
+        clearInterval(currentInterval);
+        currentInterval = null;
+    }
+    if (audio) {
+        audio.pause();
+        audio = null;
+    }
 }

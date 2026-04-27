@@ -1,6 +1,7 @@
 const checkMail = (email) =>
 {
-    const users = JSON.parse(localStorage.getItem('users'));
+    const usersStr = localStorage.getItem('users');
+    const users = safeParseJSON(usersStr);
 
     if (users && users.length > 0)
     {
@@ -20,20 +21,38 @@ const resetPassword = async (email, password) =>
         return;
     }
 
-    const users = JSON.parse(localStorage.getItem('users'));
+    const confirmation = confirm(
+        'You are about to reset the password for: ' + email + '\n\n' +
+        'Are you sure you want to proceed?'
+    );
 
-    const hashedPassword = await hashString(password);
+    if (!confirmation) {
+        return;
+    }
+
+    const usersStr = localStorage.getItem('users');
+    const users = safeParseJSON(usersStr);
+
+    if (!users) {
+        document.querySelector("#errwin").innerHTML = 'Error accessing user data';
+        return;
+    }
+
+    const salt = generateSalt();
+    const hashedPassword = await hashString(password, salt);
 
     users.forEach((ele) => {
         if (ele.email === email)
         {
             ele.password = hashedPassword;
+            ele.salt = salt;
         }
     });
 
     localStorage.setItem('users', JSON.stringify(users));
 
     alert('Password Reset Successful');
+    window.location.href = '/pages/user.html';
 }
 
 const resetPass = async () =>
@@ -70,5 +89,4 @@ document.addEventListener('DOMContentLoaded', () => {
     const reset_btn = document.querySelector("#reset-btn");
 
     reset_btn.addEventListener('click', resetPass);
-
 });

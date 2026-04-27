@@ -9,7 +9,7 @@
 
     <!-- Loading the Components Styles -->
     <link rel="stylesheet" type="text/css" href="styles/components/main.css">
-    <link rel="stylesheet" type="text/css" href="styles/components/resposive.css">
+    <link rel="stylesheet" type="text/css" href="styles/components/responsive.css">
     <link rel="stylesheet" type="text/css" href="styles/components/lists.css">
     <link rel="stylesheet" type="text/css" href="styles/components/control.css">
 
@@ -21,30 +21,16 @@
     <!-- Its Quite Amazing that a Single div can hold the whole app :) -->
     <div class="mybody"></div>
 
-    <!-- Loading the Main Data base first using Defer so that the data is loaded first before the main script -->
-    <script defer src="scripts/utils/data.js"></script>
-
-    <!-- Loading Some assets for the main components -->
+    <!-- Loading scripts in correct dependency order, all deferred -->
+    <script defer src="scripts/assets/hash.js"></script>
     <script defer src="scripts/assets/item.js"></script>
-    <script src="scripts/assets/functions.js"></script>
-    <script src="scripts/assets/elemets.js"></script>
-
-    <!-- Loading the location Utility for the App -->
-    <script src="scripts/utils/location.js"></script>
-
-    <!-- Loading the Hashing and Session Utilities -->
-    <script src="scripts/assets/hash.js"></script>
-
-    <!-- Loading the Auth Script -->
-    <script src="scripts/utils/checkAuth.js"></script>
-
-    <!-- Loading the Controls for Locations -->
-    <script src="scripts/utils/controls.js"></script>
-
-    <!-- Loading the Main Tracking Script -->
-    <script src="scripts/utils/tracking.js"></script>
-
-    <!-- At the Last The Main App -->
-    <script src="scripts/src/main.js"></script>
+    <script defer src="scripts/assets/elements.js"></script>
+    <script defer src="scripts/assets/functions.js"></script>
+    <script defer src="scripts/utils/data.js"></script>
+    <script defer src="scripts/utils/location.js"></script>
+    <script defer src="scripts/utils/checkAuth.js"></script>
+    <script defer src="scripts/utils/controls.js"></script>
+    <script defer src="scripts/utils/tracking.js"></script>
+    <script defer src="scripts/src/main.js"></script>
 </body>
 </html>

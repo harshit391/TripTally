@@ -14,17 +14,46 @@ const login = async (email, password) =>
         return;
     }
 
-    const users = JSON.parse(usersDB);
-    const hashedPassword = await hashString(password);
+    const users = safeParseJSON(usersDB);
+    if (!users) {
+        error_window.innerHTML = 'Error reading user data';
+        return;
+    }
 
-    // Match against hashed password
-    let user = users.find(u => u.email === email && u.password === hashedPassword);
+    let user = null;
 
-    // Migration: if no match, try plain-text and upgrade to hashed
+    // Try salted hash first
+    for (const u of users) {
+        if (u.email === email && u.salt) {
+            const hashedPassword = await hashString(password, u.salt);
+            if (u.password === hashedPassword) {
+                user = u;
+                break;
+            }
+        }
+    }
+
+    // Migration: try unsalted hash
+    if (!user) {
+        const hashedPassword = await hashString(password);
+        user = users.find(u => u.email === email && u.password === hashedPassword);
+
+        // Upgrade to salted hash
+        if (user) {
+            const salt = generateSalt();
+            user.salt = salt;
+            user.password = await hashString(password, salt);
+            localStorage.setItem('users', JSON.stringify(users));
+        }
+    }
+
+    // Migration: try plain-text (legacy)
     if (!user) {
         const legacyUser = users.find(u => u.email === email && u.password === password);
         if (legacyUser) {
-            legacyUser.password = hashedPassword;
+            const salt = generateSalt();
+            legacyUser.salt = salt;
+            legacyUser.password = await hashString(password, salt);
             localStorage.setItem('users', JSON.stringify(users));
             user = legacyUser;
         }
@@ -50,22 +79,27 @@ const signup = async (username, password, email) =>
 
     if (usersDB !== null)
     {
-        const exists = JSON.parse(usersDB).find(user => user.email === email);
+        const parsed = safeParseJSON(usersDB);
+        if (parsed) {
+            const exists = parsed.find(user => user.email === email);
 
-        if (exists)
-        {
-            document.getElementById("errwin").scrollIntoView();
-            error_window.innerHTML = `User already exists`;
-            return;
+            if (exists)
+            {
+                document.getElementById("errwin").scrollIntoView();
+                error_window.innerHTML = `User already exists`;
+                return;
+            }
+
+            users = parsed;
         }
-
-        users = JSON.parse(usersDB);
     }
 
     error_window.innerHTML = '';
 
-    const hashedPassword = await hashString(password);
+    const salt = generateSalt();
+    const hashedPassword = await hashString(password, salt);
     const curruser = new User(username, hashedPassword, email);
+    curruser.salt = salt;
 
     users.push(curruser);
 
@@ -120,6 +154,12 @@ signup_btn.addEventListener('click', async () => {
         error_window.innerHTML = 'Password must be at least 6 characters';
         return;
     }
+    else if (name.value.length > 50)
+    {
+        document.getElementById("errwin").scrollIntoView();
+        error_window.innerHTML = 'Name must be 50 characters or less';
+        return;
+    }
 
     await signup(name.value, password.value, email.value);
 });
@@ -152,4 +192,4 @@ document.addEventListener('DOMContentLoaded', () => {
     login_button.classList.add('selected');
     login_cont.style.display = 'flex';
     signup_cont.style.display = 'none';
-})
+});

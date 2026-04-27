@@ -1,13 +1,24 @@
 const eleFunc = () =>
 {
-    const cookie = document.cookie.split(';')[0].split('=')[1];
+    const userId = getSessionUserId();
 
-    const name = JSON.parse(localStorage.getItem('users')).find(user => user.id === parseInt(cookie)).username;
+    const usersDB = localStorage.getItem('users');
+    let name = 'User';
+
+    if (usersDB && userId) {
+        const users = safeParseJSON(usersDB);
+        if (users) {
+            const user = users.find(u => u.id === userId);
+            if (user) {
+                name = user.username;
+            }
+        }
+    }
 
     const welcome = document.querySelector(".welcome");
 
     welcome.innerHTML = `Hi, ${name} !`;
-    
+
     const ttl = document.querySelector(".title");
     const ttl1 = document.querySelector(".title1");
     const ttl2 = document.querySelector(".title2");
@@ -22,8 +33,8 @@ const eleFunc = () =>
     const listcoming = document.querySelectorAll(".form-container")[1];
     const listgoing = document.querySelectorAll(".form-container")[0];
 
-    const defaultlist = database.defaultlist;
-    
+    const defaultlist = database ? database.defaultlist : "going";
+
     if(defaultlist === "coming")
     {
         ttl2.classList.add("selected");
@@ -47,8 +58,10 @@ const eleFunc = () =>
         listgoing.style.display = "flex";
         ttl2.classList.remove("selected");
         ttl.innerText = "List Going on Trip";
-        database.defaultlist = "going";
-        uploadDataBase();
+        if (database) {
+            database.defaultlist = "going";
+            uploadDataBase();
+        }
     });
 
     ttl2.addEventListener('click', () =>
@@ -58,8 +71,9 @@ const eleFunc = () =>
         listgoing.style.display = "none";
         ttl1.classList.remove("selected");
         ttl.innerText = "List Coming from Trip";
-        database.defaultlist = "coming";
-        uploadDataBase();
+        if (database) {
+            database.defaultlist = "coming";
+            uploadDataBase();
+        }
     });
 }
-

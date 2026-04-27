@@ -1,4 +1,10 @@
-function item(id, text, checked = false, type) 
+function escapeHTML(str) {
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
+}
+
+function item(id, text, checked = false, type)
 {
     this.text = text;
 
@@ -9,19 +15,19 @@ function item(id, text, checked = false, type)
     this.id = id;
 
     this.element = document.createElement('div');
-    
+
     this.element.classList.add('item');
-    
+
     this.element.innerHTML = `
     <input type='checkbox' class='check'>
     <div>
-        <p class='item-text'>${this.text}</p>
+        <p class='item-text'>${escapeHTML(this.text)}</p>
         <button class='btn'>Delete</button>
     </div>
     `;
 
     const deleteButton = this.element.querySelector('.btn');
-    
+
     deleteButton.addEventListener('click', () => {
         this.element.remove();
         deleteItem(this.id, this.type);
@@ -33,7 +39,7 @@ function item(id, text, checked = false, type)
         checkBox.checked = true;
         this.element.classList.add('checked');
     }
-    
+
     checkBox.addEventListener('change', () => {
         if (checkBox.checked) {
             updateItem(id, type, true);
@@ -43,6 +49,6 @@ function item(id, text, checked = false, type)
             this.element.classList.remove('checked');
         }
     });
-    
+
     return this.element;
 }

@@ -1,6 +1,13 @@
-async function hashString(message) {
+function generateSalt() {
+    const array = new Uint8Array(16);
+    crypto.getRandomValues(array);
+    return Array.from(array).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function hashString(message, salt) {
+    const input = salt ? salt + message : message;
     const encoder = new TextEncoder();
-    const data = encoder.encode(message);
+    const data = encoder.encode(input);
     const hashBuffer = await crypto.subtle.digest('SHA-256', data);
     const hashArray = Array.from(new Uint8Array(hashBuffer));
     const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
@@ -15,11 +22,12 @@ function generateSessionToken() {
 
 function createSession(userId) {
     const sessionToken = generateSessionToken();
-    const sessions = JSON.parse(localStorage.getItem('sessions') || '[]');
+    const sessions = safeParseJSON(localStorage.getItem('sessions')) || [];
     const filtered = sessions.filter(s => s.userId !== userId);
-    filtered.push({ token: sessionToken, userId: userId });
+    const expiresAt = Date.now() + (7 * 24 * 60 * 60 * 1000); // 7 days
+    filtered.push({ token: sessionToken, userId: userId, expiresAt: expiresAt });
     localStorage.setItem('sessions', JSON.stringify(filtered));
-    document.cookie = `token=${sessionToken};path=/`;
+    document.cookie = `token=${sessionToken};path=/;max-age=${7 * 24 * 60 * 60};SameSite=Strict`;
     return sessionToken;
 }
 
@@ -33,9 +41,21 @@ function getSessionUserId() {
     const sessionToken = tokenMatch.split('=')[1];
     if (!sessionToken) return null;
 
-    const sessions = JSON.parse(localStorage.getItem('sessions') || '[]');
+    const sessions = safeParseJSON(localStorage.getItem('sessions')) || [];
     const session = sessions.find(s => s.token === sessionToken);
-    return session ? session.userId : null;
+
+    if (!session) return null;
+
+    // Check expiry
+    if (session.expiresAt && Date.now() > session.expiresAt) {
+        // Remove expired session
+        const filtered = sessions.filter(s => s.token !== sessionToken);
+        localStorage.setItem('sessions', JSON.stringify(filtered));
+        document.cookie = 'token=;path=/;max-age=0;SameSite=Strict';
+        return null;
+    }
+
+    return session.userId;
 }
 
 function clearSession() {
@@ -45,11 +65,19 @@ function clearSession() {
         if (tokenMatch) {
             const sessionToken = tokenMatch.split('=')[1];
             if (sessionToken) {
-                const sessions = JSON.parse(localStorage.getItem('sessions') || '[]');
+                const sessions = safeParseJSON(localStorage.getItem('sessions')) || [];
                 const filtered = sessions.filter(s => s.token !== sessionToken);
                 localStorage.setItem('sessions', JSON.stringify(filtered));
             }
         }
     }
-    document.cookie = 'token=;path=/;';
+    document.cookie = 'token=;path=/;max-age=0;SameSite=Strict';
+}
+
+function safeParseJSON(str) {
+    try {
+        return JSON.parse(str);
+    } catch (e) {
+        return null;
+    }
 }

@@ -31,11 +31,14 @@ Maintain separate lists for **Going on Trip** and **Coming from Trip**. Add, che
 Forgot to pack something? TripTally plays an audio alarm when unchecked items remain on your active list. Configure the alarm volume, duration, and reminder interval to your preference.
 
 ### User Authentication
-Sign up and log in to keep your data tied to your account. Passwords are **SHA-256 hashed** before storage, and sessions use **cryptographically random tokens** instead of predictable user IDs.
+Sign up and log in to keep your data tied to your account. Passwords are **salted and SHA-256 hashed** before storage, and sessions use **cryptographically random tokens** with automatic expiry.
+
+### Geolocation Tracking
+Set your home and trip locations using the Geolocation API. Track your position in real-time and get location-based awareness while traveling.
 
 ### Audio Configuration
 Fine-tune your reminder experience:
-- Adjust alarm volume (0-100%)
+- Adjust alarm volume (0-100%) with a real-time slider
 - Set alarm playback duration
 - Set reminder check interval
 - Test the alarm sound before your trip
@@ -49,10 +52,10 @@ Works on both desktop and mobile browsers with a clean, intuitive interface.
 
 | Layer     | Technology                        |
 |-----------|-----------------------------------|
-| Frontend  | HTML5, CSS3, Vanilla JavaScript   |
+| Frontend  | HTML5, CSS3, Vanilla JavaScript (ES6+) |
 | Backend   | Node.js, Express.js (static file server) |
 | Storage   | Browser LocalStorage, Cookies     |
-| Security  | Web Crypto API (SHA-256, `crypto.getRandomValues`) |
+| Security  | Web Crypto API (SHA-256 + salt, `crypto.getRandomValues`) |
 
 ---
 
@@ -73,9 +76,9 @@ TripTally/
 │   │   └── tutorial.html             # Tutorial / help page
 │   ├── scripts/
 │   │   ├── assets/                   # Core components & utilities
-│   │   │   ├── hash.js               # SHA-256 hashing & session management
-│   │   │   ├── item.js               # List item DOM component
-│   │   │   ├── elemets.js            # HTML templates
+│   │   │   ├── hash.js               # Salted SHA-256 hashing & session management
+│   │   │   ├── item.js               # List item DOM component (XSS-safe)
+│   │   │   ├── elements.js           # HTML templates
 │   │   │   ├── functions.js          # UI helper functions
 │   │   │   └── audioFunctions.js     # Audio control logic
 │   │   ├── auth/                     # Authentication
@@ -143,20 +146,26 @@ TripTally/
 ### Authentication Flow
 
 ```
-Sign Up  -->  Hash password (SHA-256)  -->  Store user in localStorage
-         -->  Generate random session token  -->  Set cookie  -->  Redirect to dashboard
+Sign Up  -->  Generate salt  -->  Hash password (salt + SHA-256)
+         -->  Store user with salt in localStorage
+         -->  Generate random session token (7-day expiry)
+         -->  Set cookie (SameSite=Strict)  -->  Redirect to dashboard
 
-Login    -->  Hash entered password  -->  Compare against stored hash
-         -->  On match: create session token  -->  Set cookie  -->  Redirect to dashboard
+Login    -->  Retrieve user salt  -->  Hash entered password with salt
+         -->  Compare against stored hash
+         -->  On match: create session token  -->  Set cookie  -->  Redirect
+         -->  Legacy migration: auto-upgrade unsalted/plaintext passwords
 
-Logout   -->  Clear session from localStorage  -->  Clear cookie  -->  Redirect to login
+Logout   -->  Clear session from localStorage  -->  Clear cookie  -->  Redirect
 ```
 
 ### Data Flow
 
 ```
-User adds item  -->  Item saved to localStorage (per-user)  -->  DOM updated
-Page loads      -->  Session token validated  -->  User data loaded  -->  Lists rendered
+User adds item  -->  Input sanitized (HTML escaped, 200 char limit)
+                -->  Item saved to localStorage (per-user)  -->  DOM updated
+Page loads      -->  Session token validated (expiry check)
+                -->  User data loaded  -->  Lists rendered
 ```
 
 ### Reminder System
@@ -167,15 +176,24 @@ Page loads      -->  Session token validated  -->  User data loaded  -->  Lists 
 4. The alarm stops after the configured duration
 5. The cycle repeats until all items are checked or tracking is disabled
 
+### Geolocation System
+
+1. User sets Home and Trip coordinates via the Geolocation API
+2. Real-time position tracking can be started/stopped for each location
+3. Current coordinates are displayed on the dashboard
+
 ---
 
 ## Security
 
-- **Password Hashing** -- All passwords are hashed using SHA-256 via the Web Crypto API before being stored. Plain-text passwords are never persisted.
-- **Secure Session Tokens** -- Sessions use 256-bit cryptographically random tokens generated with `crypto.getRandomValues()`, replacing the previous predictable user ID approach.
-- **Session Management** -- Each login generates a unique session token stored in both a cookie and localStorage. Logout invalidates the token on both sides.
-- **Legacy Migration** -- Existing accounts with plain-text passwords are automatically upgraded to hashed passwords on next login.
-- **Password Strength** -- Minimum 6-character password requirement enforced on sign up and password reset.
+- **Salted Password Hashing** -- Passwords are hashed with a unique per-user 128-bit salt using SHA-256 via the Web Crypto API. Plain-text passwords are never persisted.
+- **Secure Session Tokens** -- Sessions use 256-bit cryptographically random tokens generated with `crypto.getRandomValues()`.
+- **Session Expiry** -- Tokens automatically expire after 7 days. Expired sessions are cleaned up on access.
+- **Cookie Security** -- Session cookies use `SameSite=Strict` and `max-age` attributes.
+- **XSS Protection** -- All user-supplied text is HTML-escaped before DOM insertion.
+- **Input Validation** -- Maximum input lengths enforced on all fields. Minimum 6-character password requirement.
+- **Legacy Migration** -- Existing accounts with plain-text or unsalted passwords are automatically upgraded on next login.
+- **Safe JSON Parsing** -- All localStorage reads use error-safe parsing to prevent crashes from corrupted data.
 
 > **Note:** This is a client-side application. All data (including hashed passwords and session tokens) is stored in the browser's localStorage. For production use, a server-side backend with a proper database would be recommended.
 
@@ -201,10 +219,11 @@ Page loads      -->  Session token validated  -->  User data loaded  -->  Lists 
 ## Future Scope
 
 - **Cloud Database** -- Sync data across devices so users can manage lists on desktop and access them on mobile
-- **Location Tracking** -- Detect when a user arrives at or leaves a location and trigger reminders automatically
+- **Location-Based Reminders** -- Detect when a user arrives at or leaves a location and trigger reminders automatically
 - **List Suggestions** -- Recommend packing items based on the trip destination and weather
 - **Interactive Map** -- Show places left to visit on a GPS map
 - **Collaborative Lists** -- Share packing lists with travel companions
+- **Push Notifications** -- Browser push notifications for reminders when the tab is in background
 
 ---
 

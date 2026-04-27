@@ -9,6 +9,9 @@ const load = () =>
             ${profile}
             ${guide}
             ${lists}
+            ${locationHome}
+            ${locationTrip}
+            ${startButtons}
         </div>
     `;
 
@@ -18,9 +21,15 @@ const load = () =>
 
     loadTracker();
 
+    locationFunctions();
+
+    const controlsInstance = controls();
+    const defaultLoc = localStorage.getItem("defaultloc") || "Home";
+    controlsInstance.Bydefault(defaultLoc);
+
     const goingForm = document.querySelector('.form-going');
     const comingForm = document.querySelector('.form-coming');
-    
+
     goingForm.addEventListener('submit', addItems);
     comingForm.addEventListener('submit', addItems);
 
@@ -32,6 +41,5 @@ const load = () =>
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    giveItems();
     load();
 })

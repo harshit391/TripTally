@@ -15,7 +15,7 @@ const lists = `<div class='lists'>
             <div class='main-container'>
                 <div class='form-container'>
                     <form class='form-going'>
-                        <input type='text' class='input' placeholder='Going on Trip Items'>
+                        <input type='text' class='input' placeholder='Going on Trip Items' maxlength='200'>
                         <button class='add-btn'>Add Item</button>
                         <button class='clear-going'>Clear List</button>
                     </form>
@@ -23,7 +23,7 @@ const lists = `<div class='lists'>
                 </div>
                 <div class='form-container'>
                     <form class='form-coming'>
-                        <input type='text' class='input' placeholder='Coming from Trip Items'>
+                        <input type='text' class='input' placeholder='Coming from Trip Items' maxlength='200'>
                         <button class='add-btn'>Add Item</button>
                         <button class='clear-coming'>Clear List</button>
                     </form>

@@ -11,7 +11,7 @@
 
     <!-- Loading the Components Css -->
     <link rel="stylesheet" href="/styles/auth/user.css">
-    
+
     <title>User Auth</title>
 </head>
 <body>
@@ -19,9 +19,9 @@
         <a href="/index.html">Go Back</a>
     </div>
 
-    
+
     <div class="container">
-        
+
         <div class="head">
             <h1>
                 User Login and Sign Up
@@ -35,15 +35,15 @@
 
         <div class="login-signup">
             <div class="login-button">Already Have an Account !</div>
-            <div class="signup-button"">Register for New User</div>
+            <div class="signup-button">Register for New User</div>
         </div>
         <div class="l-s-container">
-            
+
             <div class="login-container">
                 <label for="email-login">Email</label>
-                <input type="email" name="email-login" id="email-login" placeholder="Email">
+                <input type="email" name="email-login" id="email-login" placeholder="Email" maxlength="100">
                 <label for="password-login">Password</label>
-                <input type="password" name="password-login" id="password-login" placeholder="Password">
+                <input type="password" name="password-login" id="password-login" placeholder="Password" maxlength="128">
 
                 <a href="/pages/reset.html">Forgot Password</a>
 
@@ -52,13 +52,13 @@
 
             <div class="signup-container">
                 <label for="name">Name</label>
-                <input type="text" name="name" id="name" placeholder="Name">
+                <input type="text" name="name" id="name" placeholder="Name" maxlength="50">
 
                 <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="Email">
+                <input type="email" name="email" id="email" placeholder="Email" maxlength="100">
 
                 <label for="password">Password</label>
-                <input type="password" name="password" id="password" placeholder="Password">
+                <input type="password" name="password" id="password" placeholder="Password" maxlength="128">
 
                 <button id="signup">SignUp</button>
             </div>
@@ -68,16 +68,10 @@
         </div>
     </div>
 
-    <!-- Loading the User Class First -->
+    <!-- Loading scripts in correct dependency order -->
     <script defer src="/scripts/auth/user.js"></script>
-
-    <!-- Loading The Check Auth Scripts -->
-    <script src="/scripts/utils/checkAuth.js"></script>
-
-    <!-- Loading the Hashing File -->
-    <script src="/scripts/assets/hash.js"></script>
-
-    <!-- Loading the Auth Scripts -->
-    <script src="/scripts/auth/auth.js"></script>
+    <script defer src="/scripts/assets/hash.js"></script>
+    <script defer src="/scripts/utils/checkAuth.js"></script>
+    <script defer src="/scripts/auth/auth.js"></script>
 </body>
 </html>

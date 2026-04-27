@@ -1,4 +1,4 @@
-class listItem 
+class listItem
 {
     constructor(id, value, checked, type)
     {
@@ -26,26 +26,36 @@ class UserData
 var goingListFromStorage = null;
 var comingListFromStorage = null;
 
-const token = getSessionUserId();
+var token = null;
 
 var storage = [];
 var database = null;
 
 const getDataBase = () => {
 
+    token = getSessionUserId();
+
+    if (!token) {
+        return;
+    }
+
     const dataDB = localStorage.getItem("data");
 
     if (dataDB)
     {
-        storage = JSON.parse(dataDB);
+        const parsed = safeParseJSON(dataDB);
+        storage = parsed || [];
 
-        if (storage !== null && storage.length > 0)
+        if (storage.length > 0)
         {
-            storage.forEach((ele) => {
-                if (ele.id === token) {
-                    database = ele;
-                }
-            });
+            database = storage.find(ele => ele.id === token) || null;
+
+            if (!database)
+            {
+                database = new UserData(token);
+                storage.push(database);
+                uploadDataBase();
+            }
         }
         else
         {
@@ -63,11 +73,14 @@ const getDataBase = () => {
 }
 
 const uploadDataBase = () => {
-    storage.forEach((ele) => {
-        if (ele.id === token) {
-            ele = database;
-        }
-    });
+    if (!token || !database) return;
+
+    const index = storage.findIndex(ele => ele.id === token);
+    if (index !== -1) {
+        storage[index] = database;
+    } else {
+        storage.push(database);
+    }
 
     localStorage.setItem("data", JSON.stringify(storage));
 }
@@ -91,20 +104,21 @@ const giveItems = () =>
     }
 }
 
-const addItems = (e) => 
+const addItems = (e) =>
 {
     e.preventDefault();
 
     const input = e.target.querySelector('.input');
-    
-    if (input.value) {
+
+    if (input.value && input.value.trim()) {
+        const trimmedValue = input.value.trim().substring(0, 200);
         const myList = e.target.parentElement.querySelector('div');
 
         const id = Date.now();
-        
-        addData(id, myList.className, input.value);
 
-        const currItem = new item(id, input.value, false, myList.className);
+        addData(id, myList.className, trimmedValue);
+
+        const currItem = new item(id, trimmedValue, false, myList.className);
         myList.appendChild(currItem);
         input.value = '';
     }
@@ -126,17 +140,17 @@ const clearList = (e) =>
     const goingList = document.querySelector('.going-list');
     const comingList = document.querySelector('.coming-list');
 
-    if (parent.className === 'form-going')
+    if (parent.classList.contains('form-going'))
     {
         goingList.innerHTML = '';
-        
+
         database.goingList = [];
         uploadDataBase();
     }
-    else if (parent.className === 'form-coming')
+    else if (parent.classList.contains('form-coming'))
     {
         comingList.innerHTML = '';
-        
+
         database.comingList = [];
         uploadDataBase();
     }
@@ -168,28 +182,27 @@ const loadData = () =>
 
 const addData = (id, className, val) =>
 {
-    if (className === 'going-list') 
+    if (className === 'going-list')
     {
         const items = database ? database.goingList : [];
         var itemsArr = null;
 
-        if (!items) 
+        if (!items)
         {
             itemsArr = [new listItem(id, val, false, className)];
         }
-        else 
+        else
         {
             itemsArr = [...items]
             itemsArr.push(new listItem(id, val, false, className));
         }
-        
+
         if (itemsArr)
         {
             database.goingList = itemsArr;
             uploadDataBase();
         }
-
-        else 
+        else
         alert('Error in Adding Items in Data Base');
     }
     else if (className === 'coming-list')
@@ -197,29 +210,28 @@ const addData = (id, className, val) =>
         const items = database ? database.comingList : [];
         var itemsArr = null;
 
-        if (!items || items.length === 0) 
+        if (!items || items.length === 0)
         {
             itemsArr = [new listItem(id, val, false, className)];
         }
-        else 
+        else
         {
             itemsArr = [...items];
             itemsArr.push(new listItem(id, val, false, className));
         }
-        
+
         if (itemsArr)
         {
             database.comingList = itemsArr;
             uploadDataBase();
         }
-
         else
         alert('Error in Adding Items in Data Base');
     }
     else
     {
         alert('Invalid List');
-    } 
+    }
 }
 
 const deleteItem = (id, type) =>
@@ -229,9 +241,9 @@ const deleteItem = (id, type) =>
         const items = database.goingList;
 
         const itemsArr = [...items];
-        
+
         const newItemsArr = itemsArr.filter((ele) => ele.id !== id);
-        
+
         database.goingList = newItemsArr;
 
         uploadDataBase();
@@ -239,9 +251,9 @@ const deleteItem = (id, type) =>
     else if (type === 'coming-list')
     {
         const items = database.comingList;
-        
+
         const itemsArr = [...items];
-        
+
         const newItemsArr = itemsArr.filter((ele) => ele.id !== id);
 
         database.comingList = newItemsArr;
@@ -259,15 +271,15 @@ const updateItem = (id, type, val) =>
     if (type === 'going-list')
     {
         const items = database.goingList;
-        
+
         const itemsArr = [...items];
-        
+
         itemsArr.forEach((ele) => {
             if (ele.id === id) {
                 ele.checked = val;
             }
         });
-        
+
         database.goingList = itemsArr;
 
         uploadDataBase();
@@ -275,15 +287,15 @@ const updateItem = (id, type, val) =>
     else if (type === 'coming-list')
     {
         const items = database.comingList;
-        
+
         const itemsArr = [...items];
-        
+
         itemsArr.forEach((ele) => {
             if (ele.id === id) {
                 ele.checked = val;
             }
         });
-        
+
         database.comingList = itemsArr;
 
         uploadDataBase();
@@ -294,7 +306,7 @@ const updateItem = (id, type, val) =>
     }
 }
 
-const loadDataBase = () => 
+const loadDataBase = () =>
 {
     getDataBase();
     giveItems();

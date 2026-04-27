@@ -19,19 +19,11 @@
 
     <div class="config-audio"></div>
 
-    <!-- Loading the elements first -->
-    <script defer src="/scripts/assets/elemets.js"></script>
-
-    <!-- Loading the Hashing and Session Utilities -->
+    <!-- Loading scripts in correct dependency order, all deferred -->
     <script defer src="/scripts/assets/hash.js"></script>
-
-    <!-- Loading the Main Data base first using Defer so that the data is loaded first before the main script -->
+    <script defer src="/scripts/assets/elements.js"></script>
     <script defer src="/scripts/utils/data.js"></script>
-
-    <!-- Loading the Main Script file to Load Config Audio Functionality -->
     <script defer src="/scripts/assets/audioFunctions.js"></script>
-
-    <!-- Main Script file to Load Config Audio Functionality -->
-    <script src="/scripts/src/configAudio.js"></script>
+    <script defer src="/scripts/src/configAudio.js"></script>
 </body>
 </html>
